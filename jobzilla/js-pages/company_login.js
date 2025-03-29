@@ -5,10 +5,14 @@
 
 
 $(document).ready(function () {
-    $("#loginBtn").click(() => {
 
-        let email = $("#loginEmail").val();
-        let password = $("#loginPassword").val();
+
+
+
+    $("#loginButton").click(() => {
+
+        let email = $("#email").val();
+        let password = $("#password").val();
 
         $.ajax({
             url: "http://localhost:8080/api/v1/auth/signIn",
@@ -20,38 +24,28 @@ $(document).ready(function () {
             }),
             success: function (response) {
 
-                    let Authtoken = response.data.token;
-                    let userRole = response.data.role;
-                    let Name = response.data.name;
-                    let uid = response.data.id;
-
-                    localStorage.setItem("authToken", Authtoken);
-                    localStorage.setItem("userEmail", email);
-                    localStorage.setItem("Role", userRole);
-                    localStorage.setItem("name", Name);
-                    localStorage.setItem("loggedUser",uid)
-
-                    console.log(Authtoken)
-                    console.log(uid)
-                    console.log(userRole);
+                let Authtoken = response.data.token;
+                let userRole = response.data.role;
+                let Name = response.data.name;
+                let uid = response.data.id;
 
 
-                 console.log(response)
 
-                $("#sign_up_popup2").modal('hide');
-                $("#signUpButton").hide();
+                localStorage.setItem("authToken", Authtoken);
+                localStorage.setItem("userEmail", email);
+                localStorage.setItem("Role", userRole);
+                localStorage.setItem("name", Name);
+                localStorage.setItem("loggedUser",uid)
 
+                console.log(Authtoken)
+                console.log(uid)
+                console.log(userRole);
+                console.log(response)
 
-                $("#authSection").html(`
-                    <div class="welcome-message">
-                        <i class="feather-user"></i> Welcome, <strong>${Name}</strong>!
-                    </div>
-                `);
-                $("#authSection").css("display", "block");
-
-
-                if (userRole === 'EMPLOYER'){
+                if (userRole === 'EMPLOYER'&& Authtoken){
                     window.location.href = "dashboard.html"
+                }else {
+                    window.location.href = "index.html"
                 }
 
             },

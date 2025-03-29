@@ -156,6 +156,9 @@
 
                             </li>
 
+
+
+
                             <!--Notification-->
                             <li class="header-widget dashboard-noti-dropdown">
 
@@ -799,7 +802,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="site-button" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="site-button outline-primary">Yes</button>
+                    <button id="yes" type="button" class="site-button outline-primary">Yes</button>
                 </div>
             </div>
             </div>
@@ -834,6 +837,20 @@
 <script  src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script  src="js/switcher.js"></script><!-- SHORTCODE FUCTIONS  -->
 
+
+    <script>
+        $("#yes").click(()=>{
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("userEmail");
+            localStorage.removeItem("Role");
+            localStorage.removeItem("name");
+            localStorage.removeItem("loggedUser");
+
+            window.location.href = "index.html";
+
+        })
+    </script>
+
 <!-- STYLE SWITCHER  ======= --> 
 <div class="styleswitcher">
 
@@ -864,10 +881,6 @@
 </div>
 <!-- STYLE SWITCHER END ==== -->
 
-
-
-
-</script>
 
 </body>
 

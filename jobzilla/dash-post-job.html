@@ -17,7 +17,10 @@
     <!-- FAVICONS ICON -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
-    
+
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <!-- PAGE TITLE HERE -->
     <title>Jobzilla Template | Post a jobs</title>
     
@@ -44,8 +47,11 @@
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="css/skins-type/skin-6.css">
     <!-- SIDE SWITCHER STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="css/switcher.css">    
- 
+    <link rel="stylesheet" type="text/css" href="css/switcher.css">
+
+
+
+
 </head>
 
 <body>
@@ -378,12 +384,13 @@
                     <div class="panel-body wt-panel-body p-a20 m-b30 ">
                         <form>
                             <div class="row">
+
                                     <!--Job title-->            
                                     <div class="col-xl-4 col-lg-6 col-md-12">
                                         <div class="form-group">
                                             <label>Job Title</label>
                                             <div class="ls-inputicon-box"> 
-                                                <input class="form-control" name="company_name" type="text" placeholder="Devid Smith">
+                                                <input id="jobTitl" class="form-control" name="company_name" type="text" placeholder="Devid Smith">
                                                 <i class="fs-input-icon fa fa-address-card"></i>
                                             </div>
                                         </div>
@@ -394,7 +401,7 @@
                                         <div class="form-group city-outer-bx has-feedback">
                                             <label>Job Category</label>
                                             <div class="ls-inputicon-box">  
-                                                <select class="wt-select-box selectpicker"  data-live-search="true" title="" id="j-category" data-bv-field="size">
+                                                <select  class="wt-select-box selectpicker"  data-live-search="true" title="" id="j-category" data-bv-field="size">
                                                     <option disabled selected value="">Select Category</option>
                                                     <option>Accounting and Finance</option>
                                                     <option>Clerical &amp; Data Entry</option>
@@ -420,7 +427,7 @@
                                             <label>Job Type</label>
                                             <div class="ls-inputicon-box">  
                                                 <select class="wt-select-box selectpicker"  data-live-search="true" title="" id="s-category" data-bv-field="size">
-                                                    <option class="bs-title-option" value="">Select Category</option>
+                                                    <option id="jobType" class="bs-title-option" value="">Select Category</option>
                                                     <option>Full Time</option>
                                                     <option>Freelance</option>
                                                     <option>Part Time</option>
@@ -439,7 +446,7 @@
                                             <label>Offered Salary</label>
                                             <div class="ls-inputicon-box">  
                                                 <select class="wt-select-box selectpicker"  data-live-search="true" title="" id="salary" data-bv-field="size">
-                                                    <option class="bs-title-option" value="">Salary</option>
+                                                    <option id="offerd-salary" class="bs-title-option" value="">Salary</option>
                                                     <option>$500</option>
                                                     <option>$1000</option>
                                                     <option>$1500</option>
@@ -456,7 +463,7 @@
                                         <div class="form-group">
                                             <label>Experience</label>
                                             <div class="ls-inputicon-box"> 
-                                                <input class="form-control" name="company_Email" type="email" placeholder="E.g. Minimum 3 years">
+                                                <input id="experience" class="form-control" name="company_Email" type="email" placeholder="E.g. Minimum 3 years">
                                                 <i class="fs-input-icon fa fa-user-edit"></i>
                                             </div>
                                         </div>
@@ -467,7 +474,7 @@
                                         <div class="form-group">
                                             <label>Qualification</label>
                                             <div class="ls-inputicon-box"> 
-                                                <input class="form-control" name="company_Email" type="email" placeholder="Qualification Title">
+                                                <input id="qualifications" class="form-control" name="company_Email" type="email" placeholder="Qualification Title">
                                                 <i class="fs-input-icon fa fa-user-graduate"></i>
                                             </div>
                                         </div>
@@ -494,7 +501,7 @@
                                         <div class="form-group">
                                             <label>Country</label>
                                             <div class="ls-inputicon-box">  
-                                                <select class="wt-select-box selectpicker"  data-live-search="true" title="" id="country" data-bv-field="size">
+                                                <select  class="wt-select-box selectpicker"  data-live-search="true" title="" id="country" data-bv-field="size">
                                                     <option class="bs-title-option" value="">Country</option>
                                                     <option>Afghanistan</option>
                                                     <option>Albania</option>
@@ -550,40 +557,17 @@
                                         <div class="form-group">
                                             <label>Location</label>
                                             <div class="ls-inputicon-box"> 
-                                                <input class="form-control" name="company_Email" type="email" placeholder="Type Address">
+                                                <input id="location" class="form-control" name="company_Email" type="email" placeholder="Type Address">
                                                 <i class="fs-input-icon fa fa-map-marker-alt"></i>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!--Latitude--> 
-                                    <div class="col-xl-4 col-lg-6 col-md-12">
-                                        <div class="form-group">
-                                            <label>Latitude</label>
-                                            <div class="ls-inputicon-box"> 
-                                                <input class="form-control" name="company_Email" type="email" placeholder="Los Angeles">
-                                                <i class="fs-input-icon fa fa-map-pin"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--longitude--> 
-                                    <div class="col-xl-4 col-lg-6 col-md-12">
-                                        <div class="form-group">
-                                            <label>Longitude</label>
-                                            <div class="ls-inputicon-box"> 
-                                                <input class="form-control" name="company_Email" type="email" placeholder="Los Angeles">
-                                                <i class="fs-input-icon fa fa-map-pin"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <!--Email Address-->
                                     <div class="col-xl-4 col-lg-6 col-md-12">
                                         <div class="form-group">
                                             <label>Email Address</label>
                                             <div class="ls-inputicon-box"> 
-                                                <input class="form-control" name="company_Email" type="email" placeholder="Devid@example.com">
+                                                <input id="email" class="form-control" name="company_Email" type="email" placeholder="Devid@example.com">
                                                 <i class="fs-input-icon fas fa-at"></i>
                                             </div>
                                         </div>
@@ -594,7 +578,7 @@
                                         <div class="form-group">
                                             <label>Website</label>
                                             <div class="ls-inputicon-box"> 
-                                                <input class="form-control" name="company_website" type="text" placeholder="https://.../">
+                                                <input id="website" class="form-control" name="company_website" type="text" placeholder="https://.../">
                                                 <i class="fs-input-icon fa fa-globe-americas"></i>
                                             </div>
                                         </div>
@@ -605,7 +589,7 @@
                                         <div class="form-group">
                                             <label>Est. Since</label>
                                             <div class="ls-inputicon-box"> 
-                                                <input class="form-control" name="company_since" type="text" placeholder="Since...">
+                                                <input id="estsince" class="form-control" name="company_since" type="text" placeholder="Since...">
                                                 <i class="fs-input-icon fa fa-clock"></i>
                                             </div>
                                         </div>
@@ -616,7 +600,7 @@
                                         <div class="form-group">
                                             <label>Complete Address</label>
                                             <div class="ls-inputicon-box"> 
-                                                <input class="form-control" name="company_since" type="text" placeholder="1363-1385 Sunset Blvd Los Angeles, CA 90026, USA">
+                                                <input id="complete-address" class="form-control" name="company_since" type="text" placeholder="1363-1385 Sunset Blvd Los Angeles, CA 90026, USA">
                                                 <i class="fs-input-icon fa fa-home"></i>
                                             </div>
                                         </div>
@@ -626,7 +610,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea class="form-control" rows="3" placeholder="Greetings! We are Galaxy Software Development Company. We hope you enjoy our services and quality."></textarea>
+                                            <textarea id="desc" class="form-control" rows="3" placeholder="Greetings! We are Galaxy Software Development Company. We hope you enjoy our services and quality."></textarea>
                                         </div>
                                     </div> 
                                     
@@ -635,7 +619,7 @@
                                         <div class="form-group">
                                             <label>Start Date</label>
                                             <div class="ls-inputicon-box"> 
-                                                <input class="form-control datepicker" data-provide="datepicker" name="company_since" type="text" placeholder="mm/dd/yyyy">
+                                                <input id="sdate" class="form-control datepicker" data-provide="datepicker" name="company_since" type="text" placeholder="mm/dd/yyyy">
                                                 <i class="fs-input-icon far fa-calendar"></i>
                                             </div>
                                         </div>
@@ -646,7 +630,7 @@
                                         <div class="form-group">
                                             <label>End Date</label>
                                             <div class="ls-inputicon-box"> 
-                                                <input class="form-control datepicker" data-provide="datepicker" name="company_since" type="text" placeholder="mm/dd/yyyy">
+                                                <input id="edate" class="form-control datepicker" data-provide="datepicker" name="company_since" type="text" placeholder="mm/dd/yyyy">
                                                 <i class="fs-input-icon far fa-calendar"></i>
                                             </div>
                                         </div>
@@ -654,8 +638,8 @@
                                                                                                 
                                     <div class="col-lg-12 col-md-12">                                   
                                         <div class="text-left">
-                                            <button type="submit" class="site-button m-r5">Publish Job</button>
-                                            <button type="submit" class="site-button outline-primary">Save Draft</button>
+                                            <button type="button" id="jobdetails-btn" class="site-button m-r5">Publish Job</button>
+                                            <button type="button" class="site-button outline-primary">Save Draft</button>
                                         </div>
                                     </div> 
 
@@ -734,6 +718,12 @@
 <script  src="js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script  src="js/switcher.js"></script><!-- SHORTCODE FUCTIONS  -->
+
+    <!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+<!--custom js-->
+<script src="js-pages/job-post.js"></script>
 
 <!-- STYLE SWITCHER  ======= --> 
 <div class="styleswitcher">
