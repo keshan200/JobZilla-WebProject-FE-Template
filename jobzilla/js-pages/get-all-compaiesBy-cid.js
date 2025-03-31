@@ -1,53 +1,23 @@
-
 $(document).ready(function () {
-    let loggedInUserId = localStorage.getItem("loggedUser");
-    let authToken = localStorage.getItem("authToken");
-
-    console.log("??????",authToken)
-    console.log(">>>>>>", loggedInUserId);
-
-    $.ajax({
-        url: `http://localhost:8080/api/v1/company/user/${loggedInUserId}`,
-        method: "GET",
-        headers: {
-            "Authorization": "Bearer " + authToken
-        },
 
 
 
-        success: (response)=> {
+    const companyId = localStorage.getItem("cid");
+    console.log("hutti",companyId)
 
-            response.forEach(company2 => {
-                let companyID = company2.cid;
-                console.log("Company ID:", companyID);
-
+   $.ajax({
 
 
-            $.ajax({
+       url:`http://localhost:8080/api/v1/company/all/${companyId}`,
+       method:'GET',
 
-                url:`http://localhost:8080/api/v1/job/company/${companyID}`,
-                method: "GET",
-                headers: {
-                    "Authorization": "Bearer " + authToken
-                },
+       success:(response)=>{
 
-                success: (response)=> {
+           let container = $(".container_head");
+           response.forEach(company => {
+               let companyDetailsHtml =
 
-
-                },
-
-                error: function (xhr) {
-                    console.error("Error:", xhr.responseText);
-                }
-
-            }) });
-
-
-                let container = $(".container_head");
-                response.forEach(company => {
-                    let companyDetailsHtml =
-
-                         `<div class="page-content">
+                   `<div class="page-content">
 
                                     <!-- Employer Detail START -->
                                     <div class="section-full  p-t0 p-b90 bg-white">
@@ -463,12 +433,21 @@ $(document).ready(function () {
  <!-- Employer Detail END -->                                             
 </div>`;
 
-                    container.append(companyDetailsHtml);
-                });
+               container.append(companyDetailsHtml);
+           });
 
-        },
-        error: function (xhr) {
-            console.error("Error:", xhr.responseText);
-        }
-    });
-});
+
+
+
+
+       },
+
+       error:(err)=>{
+
+
+       }
+
+
+   })
+
+    })
