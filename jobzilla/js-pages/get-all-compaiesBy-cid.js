@@ -14,7 +14,12 @@ $(document).ready(function () {
        success:(response)=>{
 
            let container = $(".container_head");
+           console.log("red",response)
+
            response.forEach(company => {
+
+
+               console.log("ing",company.logo_img)
                let companyDetailsHtml =
 
                    `<div class="page-content">
@@ -30,7 +35,7 @@ $(document).ready(function () {
                         <div class="twm-mid-content">
                             <div class="twm-employer-self-top">
                                 <div class="twm-media">
-                                    <img src="images/jobs-company/pic1.jpg" alt="#">
+                                  <img src="http://localhost:8080/uploads/${company.logo_img}" alt="Company Logo">
                                 </div>
 
                                 <h3 class="twm-job-title">${company.company_name}</h3>
@@ -435,9 +440,6 @@ $(document).ready(function () {
 
                container.append(companyDetailsHtml);
            });
-
-
-
 
 
        },

@@ -92,7 +92,7 @@ $(document).ready(function () {
     $('#jobdetails-btn').click(function (e) {
         e.preventDefault();
 
-        // Collect input data
+
         const formData = {
             jobTitle: $('#jobTitl').val(),
             jobCategory: $('#j-category').val(),

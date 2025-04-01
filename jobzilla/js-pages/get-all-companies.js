@@ -21,7 +21,7 @@ function loadCompanies(companies) {
 
 
     companies.forEach(company => {
-        console.log(company.logo_img)
+        console.log("logo image",company.logo_img)
         let companyCard =
                       ` <div class="twm-employer-list-wrap">
                                 <ul>
@@ -48,8 +48,7 @@ function loadCompanies(companies) {
                          container.append(companyCard);
     });
 
-
-console.log("pak pak",companies)
+     console.log("pak pak",companies)
 
 
     $(document).on("click", ".tit", function (event) {

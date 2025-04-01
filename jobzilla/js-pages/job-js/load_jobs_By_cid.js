@@ -1,3 +1,4 @@
+/*
 $(document).ready(function () {
 
     let loggedInUserId = localStorage.getItem("loggedUser");
@@ -36,3 +37,4 @@ $(document).ready(function () {
 
 
 
+*/

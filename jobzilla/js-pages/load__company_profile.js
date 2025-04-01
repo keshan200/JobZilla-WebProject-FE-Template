@@ -4,7 +4,7 @@ $(document).ready(function () {
     let authToken = localStorage.getItem("authToken");
 
     console.log("??????",authToken)
-    console.log(">>>>>>", loggedInUserId);
+    console.log(">>>>>> log id", loggedInUserId);
 
     $.ajax({
         url: `http://localhost:8080/api/v1/company/user/${loggedInUserId}`,
@@ -19,7 +19,7 @@ $(document).ready(function () {
 
             response.forEach(company2 => {
                 let companyID = company2.cid;
-                console.log("Company ID:", companyID);
+                console.log(">>>>>Company ID:", companyID);
 
 
 
@@ -43,7 +43,7 @@ $(document).ready(function () {
             }) });
 
 
-                let container = $(".container_head");
+                let container = $(".container_head_user");
                 response.forEach(company => {
                     let companyDetailsHtml =
 
@@ -53,14 +53,14 @@ $(document).ready(function () {
                                     <div class="section-full  p-t0 p-b90 bg-white">
                                               <!--Top Wide banner Start-->
                                               <div class="twm-top-wide-banner overlay-wraper" style="background-image:url(../images/detail-pic/company-bnr1.jpg);">
-                    <div class="overlay-main site-bg-primary opacity-09"></div>
+                                              <div class="overlay-main site-bg-primary opacity-09"></div>
                     
                     <div class="twm-top-wide-banner-content container ">
 
                         <div class="twm-mid-content">
                             <div class="twm-employer-self-top">
                                 <div class="twm-media">
-                                    <img src="images/jobs-company/pic1.jpg" alt="#">
+                                    <img src="" alt="#">
                                 </div>
 
                                 <h3 class="twm-job-title">${company.company_name}</h3>
@@ -460,8 +460,9 @@ $(document).ready(function () {
                 </div>
                 
      </div>   
- <!-- Employer Detail END -->                                             
-</div>`;
+                          
+                           <!-- Employer Detail END -->                                             
+                          </div>`;
 
                     container.append(companyDetailsHtml);
                 });
