@@ -11,6 +11,10 @@
     <meta name="author" content="" />
     <meta name="robots" content="" />    
     <meta name="description" content="" />
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- FAVICONS ICON -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
@@ -362,7 +366,7 @@
                                                         <div class="form-group">
                                                             <label>Your Name</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="company_name" type="text" placeholder="Devid Smith">
+                                                                <input id="name" class="form-control" name="company_name" type="text" placeholder="Devid Smith">
                                                                 <i class="fs-input-icon fa fa-user "></i>
                                                             </div>
                                                         </div>
@@ -372,7 +376,7 @@
                                                         <div class="form-group">
                                                             <label>Phone</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="company_phone" type="text" placeholder="(251) 1234-456-7890">
+                                                                <input id="mobile" class="form-control" name="company_phone" type="text" placeholder="(251) 1234-456-7890">
                                                                 <i class="fs-input-icon fa fa-phone-alt"></i>
                                                             </div>
                                                         </div>
@@ -382,7 +386,7 @@
                                                         <div class="form-group">
                                                             <label>Email Address</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="company_Email" type="email" placeholder="Devid@example.com">
+                                                                <input id="email" class="form-control" name="company_Email" type="email" placeholder="Devid@example.com">
                                                                 <i class="fs-input-icon fas fa-at"></i>
                                                             </div>
                                                         </div>
@@ -392,7 +396,7 @@
                                                         <div class="form-group">
                                                             <label>Website</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="company_website" type="text" placeholder="https://devsmith.net/">
+                                                                <input id="website" class="form-control" name="company_website" type="text" placeholder="https://devsmith.net/">
                                                                 <i class="fs-input-icon fa fa-globe-americas"></i>
                                                             </div>
                                                         </div>
@@ -434,51 +438,76 @@
                                                         <div class="form-group city-outer-bx has-feedback">
                                                             <label>Experience</label>
                                                             <div class="ls-inputicon-box">  
-                                                                <input class="form-control" name="company_since" type="text" placeholder="05 Years">
+                                                                <input id="experince" class="form-control" name="company_since" type="text" placeholder="05 Years">
                                                                 <i class="fs-input-icon fa fa-user-edit"></i>
                                                             </div>
                                                             
                                                         </div>
                                                     </div>
-                
-                                                    <div class="col-xl-4 col-lg-6 col-md-12">
-                                                        <div class="form-group city-outer-bx has-feedback">
-                                                            <label>Current Salary</label>
-                                                            <div class="ls-inputicon-box">  
-                                                                <input class="form-control" name="company_since" type="text" placeholder="65K">
-                                                                <i class="fs-input-icon fa fa-dollar-sign"></i>
+
+
+                                                <!-- Skills Input Field -->
+                                                <div class="col-xl-6 col-lg-6 col-md-12">
+                                                    <div class="form-group city-outer-bx has-feedback">
+                                                        <label>Skills</label>
+                                                        <div class="ls-inputicon-box">
+                                                            <input id="skills" class="form-control" name="skills" type="text" readonly onclick="openSkillModal()">
+                                                            <i class="fs-input-icon fa fa-user-edit"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Skills Modal -->
+                                                <!-- Skills Modal -->
+                                                <div class="modal fade" id="skillsModal" tabindex="-1" aria-labelledby="skillsModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="skillsModalLabel">Add Skills</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <input type="text" id="skillInput" class="form-control" placeholder="Enter a skill">
+                                                                <button class="btn btn-primary mt-2" type="button" onclick="addSkill(event)">Add Skill</button>
+                                                                <ul id="skillsList" class="mt-3"></ul>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                             </div>
                                                         </div>
                                                     </div>
-                
-                                                    <div class="col-xl-4 col-lg-6 col-md-12">
-                                                        <div class="form-group city-outer-bx has-feedback">
-                                                            <label>Expected Salary</label>
-                                                            <div class="ls-inputicon-box">  
-                                                                <input class="form-control" name="company_since" type="text" placeholder="75K">
-                                                                <i class="fs-input-icon fa fa-dollar-sign"></i>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                
-                                                    <div class="col-xl-4 col-lg-12 col-md-12">
+                                                </div>
+
+
+                                                <div class="col-xl-4 col-lg-12 col-md-12">
                                                         <div class="form-group city-outer-bx has-feedback">
                                                             <label>Age</label>
                                                             <div class="ls-inputicon-box">  
-                                                                <input class="form-control" name="company_since" type="text" placeholder="35 Years">
+                                                                <input id="age" class="form-control" name="company_since" type="text" placeholder="35 Years">
                                                                 <i class="fs-input-icon fa fa-child"></i>
                                                             </div>
                                                             
                                                         </div>
                                                     </div>
-                
+
+
+                                                <div class="col-xl-4 col-lg-6 col-md-12">
+                                                    <div class="form-group city-outer-bx has-feedback">
+                                                        <label>gender</label>
+                                                        <div class="ls-inputicon-box">
+                                                            <input id="gender" class="form-control" name="company_since" type="text" placeholder="USA">
+                                                            <i class="fs-input-icon fa fa-globe-americas"></i>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
 
                                                     <div class="col-xl-4 col-lg-6 col-md-12">
                                                         <div class="form-group city-outer-bx has-feedback">
                                                             <label>Country</label>
                                                             <div class="ls-inputicon-box">  
-                                                                <input class="form-control" name="company_since" type="text" placeholder="USA">
+                                                                <input id="country" class="form-control" name="company_since" type="text" placeholder="USA">
                                                                 <i class="fs-input-icon fa fa-globe-americas"></i>
                                                             </div>
                                                             
@@ -489,7 +518,7 @@
                                                         <div class="form-group city-outer-bx has-feedback">
                                                             <label>City</label>
                                                             <div class="ls-inputicon-box">  
-                                                                <input class="form-control" name="company_since" type="text" placeholder="Texas">
+                                                                <input id="city" class="form-control" name="company_since" type="text" placeholder="Texas">
                                                                 <i class="fs-input-icon fa fa-globe-americas"></i>
                                                             </div>
                                                             
@@ -500,7 +529,7 @@
                                                         <div class="form-group city-outer-bx has-feedback">
                                                             <label>Postcode</label>
                                                             <div class="ls-inputicon-box">  
-                                                                <input class="form-control" name="company_since" type="text" placeholder="75462">
+                                                                <input  class="form-control" name="company_since" type="text" placeholder="75462">
                                                                 <i class="fs-input-icon fas fa-map-pin"></i>
                                                             </div>
                                                             
@@ -511,7 +540,7 @@
                                                         <div class="form-group city-outer-bx has-feedback">
                                                             <label>Full Address</label>
                                                             <div class="ls-inputicon-box">  
-                                                                <input class="form-control" name="company_since" type="text" placeholder="1363-1385 Sunset Blvd Angeles, CA 90026 ,USA">
+                                                                <input id="fullAddress" class="form-control" name="company_since" type="text" placeholder="1363-1385 Sunset Blvd Angeles, CA 90026 ,USA">
                                                                 <i class="fs-input-icon fas fa-map-marker-alt"></i>
                                                             </div>
                                                             
@@ -523,14 +552,14 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Description</label>
-                                                            <textarea class="form-control" rows="3">Greetings! when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</textarea>
+                                                            <textarea id="desc" class="form-control" rows="3">Greetings! when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</textarea>
                                                         </div>
                                                     </div>
                                                     
                                                                                                                 
                                                     <div class="col-lg-12 col-md-12">                                   
                                                         <div class="text-left">
-                                                            <button type="submit" class="site-button">Save Changes</button>
+                                                            <button id="candidate-save" type="button" class="site-button">Save Changes</button>
                                                         </div>
                                                     </div> 
                                                                                         
@@ -1068,6 +1097,57 @@
 <script  src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script  src="js/switcher.js"></script><!-- SHORTCODE FUCTIONS  -->
 
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        let skillsArray = [];
+
+        function openSkillModal() {
+            let modal = new bootstrap.Modal(document.getElementById('skillsModal'));
+            modal.show();
+            displaySkills();
+        }
+
+        function addSkill(event) {
+            event.preventDefault(); // Prevent default behavior (form submission)
+
+            const skillInput = document.getElementById('skillInput');
+            const skill = skillInput.value.trim();
+
+            if (skill && !skillsArray.includes(skill)) {
+                skillsArray.push(skill);
+                displaySkills();
+            }
+            skillInput.value = ''; // Clear input field
+        }
+
+        function displaySkills() {
+            const skillsList = document.getElementById('skillsList');
+            skillsList.innerHTML = skillsArray.map(skill =>
+                `<li class="list-group-item d-flex justify-content-between align-items-center">
+            ${skill}
+            <button class="btn btn-sm btn-danger" onclick="removeSkill('${skill}')">x</button>
+        </li>`
+            ).join('');
+
+            document.getElementById('skills').value = skillsArray.join(', '); // Update input field
+        }
+
+        function removeSkill(skill) {
+            skillsArray = skillsArray.filter(s => s !== skill);
+            displaySkills();
+        }
+
+    </script>
+    <script src="js-pages/candidate-js/register%20-candidate.js"></script>
+</body>
+</html>
+
+
 <!-- STYLE SWITCHER  ======= --> 
 <div class="styleswitcher">
 
@@ -1097,7 +1177,7 @@
     </div>    
 </div>
 <!-- STYLE SWITCHER END ==== -->
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 

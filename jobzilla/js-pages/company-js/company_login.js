@@ -24,6 +24,9 @@ $(document).ready(function () {
             }),
             success: function (response) {
 
+                console.log("response st eka",response)
+
+
                 let Authtoken = response.data.token;
                 let userRole = response.data.role;
                 let Name = response.data.name;
@@ -36,6 +39,13 @@ $(document).ready(function () {
                 localStorage.setItem("Role", userRole);
                 localStorage.setItem("name", Name);
                 localStorage.setItem("loggedUser",uid)
+
+
+
+
+
+
+
 
                 console.log(Authtoken)
                 console.log(uid)

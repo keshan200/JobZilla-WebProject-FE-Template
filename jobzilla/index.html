@@ -95,7 +95,7 @@
         <header  class="site-header header-style-light mobile-sider-drawer-menu">
 
             <div class="sticky-header main-bar-wraper  navbar-expand-lg">
-                <div class="main-bar">  
+                <div class="main-bar">
                                     
                     <div class="container-fluid clearfix"> 
                 
@@ -128,6 +128,7 @@
                                         <li><a href="job-list.html">Jobs List</a></li>
                                     </ul>                                                                 
                                 </li>
+
                                 <li class="has-child"><a href="javascript:;">Employers</a>
                                     <ul class="sub-menu">
                                         <li><a href="employer-grid.html">Employers Grid</a></li>
@@ -149,9 +150,8 @@
                                     </ul>                                                                 
                                 </li>
 
-
                                 <li class="has-child"><a href="javascript:;">Candidates</a>
-                                   <!-- <ul class="sub-menu">
+                                    <ul class="sub-menu">
                                         <li><a href="candidate-grid.html">Candidates Grid</a></li>
                                         <li><a href="candidate-list.html">Candidates List</a></li>
                                         <li class="has-child"><a href="javascript:;">Candidate Detail</a>
@@ -169,7 +169,7 @@
                                         <li><a href="candidate-job-alert.html">Job Alerts</a></li>
                                         <li><a href="candidate-change-password.html">Change Passeord</a></li>
                                         <li><a href="candidate-chat.html">Chat</a></li>
-                                    </ul> -->
+                                    </ul>
                                 </li>
 
                             </ul>
@@ -218,9 +218,8 @@
                             </button>
                         </span>
                     </form>
-                </div> 
+                </div>
             </div>
-
 
         </header>
         <!-- HEADER END -->
@@ -1727,52 +1726,44 @@
                                         </div>
                                     </div>
 
-                                    <!--Signup Employer Content--> 
+                                    <!--Signup Employer Content-->
                                     <div class="tab-pane fade" id="sign-Employer">
-                                        <div class="row">
-
-                                            <div class="col-lg-12">
-                                                <div class="form-group mb-3">
-                                                    <input name="username" type="text" required="" class="form-control" placeholder="Usearname*">
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="col-lg-12">
-                                                <div class="form-group mb-3">
-                                                    <input name="email" type="text" class="form-control" required="" placeholder="Password*">
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="col-lg-12">
-                                                <div class="form-group mb-3">
-                                                    <input name="phone" type="text" class="form-control" required="" placeholder="Email*">
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-lg-12">
-                                                <div class="form-group mb-3">
-                                                    <input name="phone" type="text" class="form-control" required="" placeholder="Phone*">
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="col-lg-12">
-                                                <div class="form-group mb-3">
-                                                    <div class=" form-check">
-                                                        <input type="checkbox" class="form-check-input" id="agree2">
-                                                        <label class="form-check-label" for="agree2">I agree to the <a href="javascript:;">Terms and conditions</a></label>
-                                                        <p>Already registered?
-                                                            <button class="twm-backto-login" data-bs-target="#sign_up_popup2" data-bs-toggle="modal" data-bs-dismiss="modal">Log in here</button>
-                                                        </p>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group mb-3">
+                                                        <input id="userNameE" name="username" type="text" class="form-control" placeholder="Username*">
                                                     </div>
                                                 </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group mb-3">
+                                                        <input id="emailE" name="email" type="text" class="form-control" placeholder="Email*">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group mb-3">
+                                                        <input id="telE" name="phone" type="text" class="form-control" placeholder="Phone*">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group mb-3">
+                                                        <input id="PasswordE" name="password" type="password" class="form-control" placeholder="Password*">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group mb-3">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" class="form-check-input" id="agree2">
+                                                            <label class="form-check-label" for="agree2">I agree to the <a href="#">Terms and conditions</a></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <button id="singUpE" type="button" class="site-button">Sign Up</button>
+                                                </div>
                                             </div>
-                                            <div class="col-md-12">
-                                                <button type="submit" class="site-button">Sign Up</button>
-                                            </div>
-                                            
                                         </div>
-                                    </div>
-                                    
+
+
                                     </div>
                                 </div> 
                             </div>
@@ -1906,8 +1897,9 @@
 
 
 <!--login-candidate-->
-<script src="js/candidate_login.js"></script>
+<script src="js/candidate_register.js"></script>
 <script src="js/login.js"></script>
+<script src="js-pages/company-js/company-register.js"></script>
 
 <!-- STYLE SWITCHER  ======= --> 
 <div class="styleswitcher">

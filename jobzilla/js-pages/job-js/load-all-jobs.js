@@ -66,11 +66,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
     $(document).on("click", ".tit", function (event) {
         event.preventDefault();
 

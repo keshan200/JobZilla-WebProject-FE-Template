@@ -26,15 +26,8 @@ $("#canBtn").click(()=>{
             console.log("Success:", data);
 
             $("#sign_up_popup").modal('hide');
+            $("#sign_up_popup2").modal('show');
             $("#signUpButton").hide();
-
-
-            $("#authSection").html(`
-                <div class="welcome-message">
-                    <i class="feather-user"></i> Welcome, <strong>${username}</strong>!
-                </div>
-            `);
-            $("#authSection").css("display", "block");
 
         },
         error: function(xhr, status, error) {

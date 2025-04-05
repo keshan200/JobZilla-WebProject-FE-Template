@@ -1,41 +1,67 @@
+
 $(document).ready(function () {
+    let loggedInUserId = localStorage.getItem("loggedUser");
+    let authToken = localStorage.getItem("authToken");
+
+    console.log("??????",authToken)
+    console.log(">>>>>> log id", loggedInUserId);
+
+    $.ajax({
+        url: `http://localhost:8080/api/v1/company/user/${loggedInUserId}`,
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + authToken
+        },
 
 
 
-    const companyId = localStorage.getItem("cid");
-    console.log("hutti",companyId)
+        success: (response)=> {
 
-   $.ajax({
-
-
-       url:`http://localhost:8080/api/v1/company/all/${companyId}`,
-       method:'GET',
-
-       success:(response)=>{
-
-           let container = $(".container_head");
-           console.log("red",response)
-
-           response.forEach(company => {
+            response.forEach(company2 => {
+                let companyID = company2.cid;
+                console.log(">>>>>Company ID:", companyID);
 
 
-               console.log("ing",company.logo_img)
-               let companyDetailsHtml =
+            $.ajax({
 
-                   `<div class="page-content">
+                url:`http://localhost:8080/api/v1/job/company/${companyID}`,
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer " + authToken
+                },
+
+                success: (response)=> {
+
+
+                },
+
+                error: function (xhr) {
+                    console.error("Error:", xhr.responseText);
+                }
+
+            }) });
+
+
+                let container = $(".container_head_user");
+                container.empty();
+
+                response.forEach(company => {
+                    let companyDetailsHtml =
+
+                         `<div class="page-content">
 
                                     <!-- Employer Detail START -->
                                     <div class="section-full  p-t0 p-b90 bg-white">
                                               <!--Top Wide banner Start-->
-                                              <div class="twm-top-wide-banner overlay-wraper" style="background-image:url(../images/detail-pic/company-bnr1.jpg);">
-                    <div class="overlay-main site-bg-primary opacity-09"></div>
+                                              <div class="twm-top-wide-banner overlay-wraper" style="background-image:url(../../images/detail-pic/company-bnr1.jpg);">
+                                              <div class="overlay-main site-bg-primary opacity-09"></div>
                     
                     <div class="twm-top-wide-banner-content container ">
 
                         <div class="twm-mid-content">
                             <div class="twm-employer-self-top">
                                 <div class="twm-media">
-                                  <img src="http://localhost:8080/uploads/${company.logo_img}" alt="Company Logo">
+                                    <img src="" alt="#">
                                 </div>
 
                                 <h3 class="twm-job-title">${company.company_name}</h3>
@@ -230,7 +256,7 @@ $(document).ready(function () {
 
                                             <div class="col-lg-12 col-md-12 m-b30">
                                                 <h4 class="twm-s-title">Video</h4>
-                                                <div class="video-section-first" style="background-image: url(../images/video-bg.jpg);">
+                                                <div class="video-section-first" style="background-image: url(../../images/video-bg.jpg);">
                                                     <a href="https://www.youtube.com/watch?v=c1XNqw2gSbU" class="mfp-video play-now-video">
                                                         <i class="icon feather-play"></i>
                                                         <span class="ripple"></span>
@@ -435,21 +461,16 @@ $(document).ready(function () {
                 </div>
                 
      </div>   
- <!-- Employer Detail END -->                                             
-</div>`;
+                          
+                           <!-- Employer Detail END -->                                             
+                          </div>`;
 
-               container.append(companyDetailsHtml);
-           });
+                    container.append(companyDetailsHtml);
+                });
 
-
-       },
-
-       error:(err)=>{
-
-
-       }
-
-
-   })
-
-    })
+        },
+        error: function (xhr) {
+            console.error("Error:", xhr.responseText);
+        }
+    });
+});

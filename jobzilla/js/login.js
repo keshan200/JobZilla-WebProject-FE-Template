@@ -25,15 +25,22 @@ $(document).ready(function () {
                     let Name = response.data.name;
                     let uid = response.data.id;
 
+
+
                     localStorage.setItem("authToken", Authtoken);
                     localStorage.setItem("userEmail", email);
                     localStorage.setItem("Role", userRole);
                     localStorage.setItem("name", Name);
                     localStorage.setItem("loggedUser",uid)
 
+
+
+
+
                     console.log(Authtoken)
                     console.log(uid)
                     console.log(userRole);
+
 
 
                  console.log(response)
@@ -51,7 +58,7 @@ $(document).ready(function () {
 
 
                 if (userRole === 'EMPLOYER'){
-                    window.location.href = "dashboard.html"
+                  /*  window.location.href = "dashboard.html"*/
                 }
 
             },

@@ -1,66 +1,37 @@
-
 $(document).ready(function () {
-    let loggedInUserId = localStorage.getItem("loggedUser");
-    let authToken = localStorage.getItem("authToken");
 
-    console.log("??????",authToken)
-    console.log(">>>>>> log id", loggedInUserId);
+    const companyId = localStorage.getItem("cid");
+    console.log("hutti",companyId)
 
-    $.ajax({
-        url: `http://localhost:8080/api/v1/company/user/${loggedInUserId}`,
-        method: "GET",
-        headers: {
-            "Authorization": "Bearer " + authToken
-        },
+   $.ajax({
+       url:`http://localhost:8080/api/v1/company/all/${companyId}`,
+       method:'GET',
 
+       success:(response)=>{
 
+           let container = $(".container_head");
+           console.log("red",response)
 
-        success: (response)=> {
-
-            response.forEach(company2 => {
-                let companyID = company2.cid;
-                console.log(">>>>>Company ID:", companyID);
+           response.forEach(company => {
 
 
+               console.log("com IMg",company.logo_img)
+                let companyDetailsHtml =
 
-            $.ajax({
-
-                url:`http://localhost:8080/api/v1/job/company/${companyID}`,
-                method: "GET",
-                headers: {
-                    "Authorization": "Bearer " + authToken
-                },
-
-                success: (response)=> {
-
-
-                },
-
-                error: function (xhr) {
-                    console.error("Error:", xhr.responseText);
-                }
-
-            }) });
-
-
-                let container = $(".container_head_user");
-                response.forEach(company => {
-                    let companyDetailsHtml =
-
-                         `<div class="page-content">
+                   `<div class="page-content">
 
                                     <!-- Employer Detail START -->
                                     <div class="section-full  p-t0 p-b90 bg-white">
                                               <!--Top Wide banner Start-->
-                                              <div class="twm-top-wide-banner overlay-wraper" style="background-image:url(../images/detail-pic/company-bnr1.jpg);">
-                                              <div class="overlay-main site-bg-primary opacity-09"></div>
+                                              <div class="twm-top-wide-banner overlay-wraper" style="background-image:url(../../images/detail-pic/company-bnr1.jpg);">
+                    <div class="overlay-main site-bg-primary opacity-09"></div>
                     
                     <div class="twm-top-wide-banner-content container ">
 
                         <div class="twm-mid-content">
                             <div class="twm-employer-self-top">
                                 <div class="twm-media">
-                                    <img src="" alt="#">
+                                  <img src="http://localhost:8080/uploads/${company.logo_img}" alt="Company Logo">
                                 </div>
 
                                 <h3 class="twm-job-title">${company.company_name}</h3>
@@ -227,35 +198,16 @@ $(document).ready(function () {
 
                                     <h4 class="twm-s-title m-t0">About Company</h4>
 
-                                    <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae 
-                                    consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? </p>
-
-                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui  officia deserunt mollitia animi.</p>
-                                    <p>Opossum but dramatically despite expeditiously that jeepers loosely yikes that as or eel underneath kept and slept compactly far purred sure abidingly up above fitting to strident wiped set waywardly far the and pangolin horse approving paid chuckled cassowary oh above a much opposite far much hypnotically more therefore wasp less that  hey apart well like while superbly orca and far hence one.Far much that one rank beheld bluebird after outside ignobly  allegedly more when oh arrogantly vehement irresistibly fussy.? </p>   
+                                    <p>${company.description}</p>
                                     
-                                    <h4 class="twm-s-title">Responsabilities</h4>
-                                    <ul class="description-list-2">
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            Establish and promote design guidelines, best practices and standards.
-                                        </li>
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            Accurately estimate design tickets during planning sessions.
-                                        </li>
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            Partnering with product and engineering to translate business and user goals.
-                                        </li>
-                                     
-                                    </ul>
+                              
                                     
                                     <div class="twm-two-part-section">
                                         <div class="row">
 
                                             <div class="col-lg-12 col-md-12 m-b30">
                                                 <h4 class="twm-s-title">Video</h4>
-                                                <div class="video-section-first" style="background-image: url(../images/video-bg.jpg);">
+                                                <div class="video-section-first" style="background-image: url(../../images/video-bg.jpg);">
                                                     <a href="https://www.youtube.com/watch?v=c1XNqw2gSbU" class="mfp-video play-now-video">
                                                         <i class="icon feather-play"></i>
                                                         <span class="ripple"></span>
@@ -460,16 +412,21 @@ $(document).ready(function () {
                 </div>
                 
      </div>   
-                          
-                           <!-- Employer Detail END -->                                             
-                          </div>`;
+ <!-- Employer Detail END -->                                             
+</div>`;
 
-                    container.append(companyDetailsHtml);
-                });
+               container.append(companyDetailsHtml);
+           });
 
-        },
-        error: function (xhr) {
-            console.error("Error:", xhr.responseText);
-        }
-    });
-});
+
+       },
+
+       error:(err)=>{
+
+
+       }
+
+
+   })
+
+    })
