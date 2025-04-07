@@ -6,6 +6,19 @@ $(document).ready(function () {
         e.preventDefault();
 
         let companyID = localStorage.getItem("cid");
+        let loggedUserCID = localStorage.getItem("loggedUserCid");
+
+        let companyCID = null;
+        if (loggedUserCID) {
+            companyCID = loggedUserCID;
+        } else {
+            companyCID = companyID;
+        }
+
+
+        console.log("assign una cid",companyCID)
+
+
 
         const formData = {
             jobTitle: $('#jobTitl').val(),
@@ -27,7 +40,7 @@ $(document).ready(function () {
             requirements: requirementsArray,
             responsibilities: responsibilitiesArray,
             company: {
-                cid: companyID
+                cid: companyCID
             }
         };
 
@@ -70,7 +83,6 @@ $(document).ready(function () {
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
                     success: function (response) {
-
 
                         Swal.fire(
                             'Done!',

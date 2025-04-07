@@ -51,7 +51,33 @@ $(document).ready(function () {
 
                 $("#authSection").html(`
                     <div class="welcome-message">
-                        <i class="feather-user"></i> Welcome, <strong>${Name}</strong>!
+
+    <div class="dashboard-user-section">
+        <div class="listing-user">
+            <div class="dropdown">
+                <a href="javascript:;" class="dropdown-toggle" id="ID-ACCOUNT_dropdown" data-bs-toggle="dropdown">
+                    <div class="user-name text-black">
+                                                    <span>
+                                                        <img src="images/user-avtar/pic4.jpg" alt="">
+                                                    </span>Nikola Tesla
+                    </div>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="ID-ACCOUNT_dropdown">
+
+                    <ul>
+                        <li><a href="dashboard.html"><i class="fa fa-home"></i>Dashboard</a></li>
+                        <li><a href="dash-messages.html"><i class="fa fa-envelope"></i> Messages</a></li>
+                        <li><a href="dash-my-profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="index.html"><i class="fa fa-share-square"></i> Logout</a></li>
+                    </ul>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
                     </div>
                 `);
                 $("#authSection").css("display", "block");
@@ -85,3 +111,37 @@ $(document).ready(function () {
         });
     });
 });
+
+
+
+<!--Account-->
+/*
+<ui>
+<li class="header-widget">
+    <div class="dashboard-user-section">
+        <div class="listing-user">
+            <div class="dropdown">
+                <a href="javascript:;" class="dropdown-toggle" id="ID-ACCOUNT_dropdown" data-bs-toggle="dropdown">
+                    <div class="user-name text-black">
+                                                    <span>
+                                                        <img src="images/user-avtar/pic4.jpg" alt="">
+                                                    </span>Nikola Tesla
+                    </div>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="ID-ACCOUNT_dropdown">
+
+                    <ul>
+                        <li><a href="dashboard.html"><i class="fa fa-home"></i>Dashboard</a></li>
+                        <li><a href="dash-messages.html"><i class="fa fa-envelope"></i> Messages</a></li>
+                        <li><a href="dash-my-profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="index.html"><i class="fa fa-share-square"></i> Logout</a></li>
+                    </ul>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</li>
+</ui>*/

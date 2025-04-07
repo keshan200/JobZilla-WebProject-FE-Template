@@ -38,7 +38,7 @@ function loadJobs(jobs) {
 
     jobs.forEach(job => {
         let companyCard =
-                `<div class="section-content">
+            `<div class="section-content">
                         <div class="row d-flex justify-content-center">
                         
                             <div class="col-lg-8 col-md-12">
@@ -89,68 +89,19 @@ function loadJobs(jobs) {
                                     <!--desc-->
                                     <h4 class="twm-s-title">Job Description:</h4>
 
-                                    <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae 
-                                        consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? 
-                                    </p>
-
-                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.</p>
+                                    <p>${job.jobDescription}</p>
                                       
                                     <!--requirement-->
                                     <h4 class="twm-s-title">Requirments:</h4>
-                                    <ul class="description-list-2">
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            Must be able to communicate with others to convey information effectively.
-                                        </li>
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            Personally passionate and up to date with current trends and technologies, committed to quality and comfortable working with adult media.
-                                        </li>
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            Rachelor or Master degree level educational background.
-                                        </li>
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            4 years relevant PHP dev experience.
-                                        </li>
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            Troubleshooting, testing and maintaining the core product software and databases.
-                                        </li>
-
+                                    <ul class="description-list-2" id="requirementsContainer-${job.jobId}">
                                     </ul>
 
                                     
                                     <!--responsibilities-->
                                     <h4 class="twm-s-title">Responsabilities:</h4>
-                                    <ul class="description-list-2">
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            Establish and promote design guidelines, best practices and standards.
-                                        </li>
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            Accurately estimate design tickets during planning sessions.
-                                        </li>
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            Partnering with product and engineering to translate business and user goals into elegant and practical designs. that can deliver on key business and user metrics.
-                                        </li>
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            Create wireframes, storyboards, user flows, process flows and site maps to communicate interaction and design.
-                                        </li>
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            Present and defend designs and key deliverables to peers and executive level stakeholders.
-                                        </li>
-                                        <li>
-                                            <i class="feather-check"></i>
-                                            Execute all visual design stages from concept to final hand-off to engineering.
-                                        </li>
-
+                                    <ul class="description-list-2" id="responsibilitiesContainer-${job.jobId}">
                                     </ul>
+                                     
                                   
                                     <h4 class="twm-s-title">Share Profile</h4>
                                     <div class="twm-social-tags">
@@ -407,9 +358,9 @@ function loadJobs(jobs) {
                                     <div class="twm-s-info3">
                                         <div class="twm-s-info-logo-section">
                                             <div class="twm-media">
-                                                <img src="images/jobs-company/pic1.jpg" alt="#">
+                                                  <img src="http://localhost:8080/uploads/${job.company.logo_img}" alt="#">
                                             </div>
-                                            <h4 class="twm-title">Senior Web Designer , Developer</h4>
+                                            <h4 class="twm-title">${job.jobTitle}</h4>
                                         </div>
                                         <ul>
 
@@ -424,29 +375,28 @@ function loadJobs(jobs) {
                                                 <div class="twm-s-info-inner">
                                                     <i class="fas fa-mobile-alt"></i>
                                                     <span class="twm-title">Phone</span>
-                                                    <div class="twm-s-info-discription">+291  560 56456</div>
+                                                    <div class="twm-s-info-discription">${job.company.user.mobile}</div>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="twm-s-info-inner">
                                                     <i class="fas fa-at"></i>
                                                     <span class="twm-title">Email</span>
-                                                    <div class="twm-s-info-discription">thewebmaxdemo@gmail.com</div>
+                                                    <div class="twm-s-info-discription">${job.company.user.email}</div>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="twm-s-info-inner">
                                                     <i class="fas fa-desktop"></i>
                                                     <span class="twm-title">Website</span>
-                                                    <div class="twm-s-info-discription">https://themeforest.net</div>
+                                                    <div class="twm-s-info-discription">${job.company.website}</div>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="twm-s-info-inner">
                                                     <i class="fas fa-map-marker-alt"></i>
                                                     <span class="twm-title">Address</span>
-                                                    <div class="twm-s-info-discription">1363-1385 Sunset Blvd Angeles, CA
-                                                        90026 ,USA</div>
+                                                    <div class="twm-s-info-discription">${job.company.full_address}</div>
                                                 </div>
                                             </li>
 
@@ -472,6 +422,29 @@ function loadJobs(jobs) {
                     </div>`;
 
         container.append(companyCard);
+
+
+        let requirementsContainer = $(`#requirementsContainer-${job.jobId}`);
+        if (job.requirements && job.requirements.length > 0) {
+            job.requirements.forEach(req => {
+                requirementsContainer.append(`<li><i class="feather-check"></i> ${req}</li>`);
+            });
+        } else {
+            requirementsContainer.append("<span>No requirements listed</span>");
+        }
+
+
+        let responsibilitiesContainer = $(`#responsibilitiesContainer-${job.jobId}`);
+        if (job.responsibilities && job.responsibilities.length > 0) {
+            job.responsibilities.forEach(res => {
+                responsibilitiesContainer.append(`<li><i class="feather-check"></i> ${res}</li>`);
+            });
+        } else {
+            responsibilitiesContainer.append("<span>No responsibilities listed</span>");
+        }
+
+
+
     });
 
 
@@ -492,11 +465,12 @@ function loadJobs(jobs) {
 
         let jobID = $(this).data("jid");
         localStorage.setItem("jobID", jobID);
+       let loggedCandID=localStorage.getItem("candidateId")
 
         console.log("Stored job ID:", jobID);
+        console.log("stored logged candidate ID",loggedCandID)
 
     });
-
 
 
 }

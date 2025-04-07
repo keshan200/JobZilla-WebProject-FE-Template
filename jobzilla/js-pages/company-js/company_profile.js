@@ -48,6 +48,31 @@ $("#detailsSaveBtn").click(function (event) {
         success: function (response) {
             Swal.fire("Success", "Company registered successfully!", "success");
 
+
+
+            $.ajax({
+                url: `http://localhost:8080/api/v1/company/user/${loggedInUserId}`,
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer " + authToken
+                },
+
+
+
+                success: (response)=> {
+
+                    response.forEach(company2 => {
+                        let companyID = company2.cid;
+                        console.log(">>>>>Company ID:", companyID);
+                        localStorage.setItem("loggedUserCid", companyID)
+                    })
+                },
+
+                error: (erro)=>{
+                    alert("cant load compay id")
+                }
+            })
+
         },
         error: function (xhr, status, error) {
             console.error(xhr.responseText || error);
@@ -56,3 +81,7 @@ $("#detailsSaveBtn").click(function (event) {
         }
     });
 });
+
+
+
+

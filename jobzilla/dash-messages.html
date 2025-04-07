@@ -44,10 +44,12 @@
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="css/skins-type/skin-6.css">
     <!-- SIDE SWITCHER STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="css/switcher.css">    
+    <link rel="stylesheet" type="text/css" href="css/switcher.css">
 
-    
- 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp-websocket/2.3.3/stomp.min.js"></script>
+
+
 </head>
 
 <body>
@@ -683,6 +685,75 @@
     </div>    
 </div>
 <!-- STYLE SWITCHER END ==== -->
+
+
+    <script>
+        let stompClient;
+
+        if (!localStorage.getItem("loggedUserUid")) {
+            localStorage.setItem("loggedUserUid", "ec0fc234-d7f2-42d9-a5c0-da5ab3249fb6");
+        }
+
+        function connect() {
+            const socket = new SockJS("http://localhost:8080/ws");
+            stompClient = Stomp.over(socket);
+
+            stompClient.connect({}, function (frame) {
+                console.log("Connected: " + frame);
+
+
+                stompClient.subscribe("/user/queue/messages", function (messageOutput) {
+                    console.log("Received: ", JSON.parse(messageOutput.body));
+                    const message = JSON.parse(messageOutput.body);
+
+
+                    const messageBlock = `
+                    <div class="single-user-comment-wrap">
+                        <div class="row">
+                            <div class="col-xl-9 col-lg-12">
+                                <div class="single-user-comment-block clearfix">
+                                    <div class="single-user-com-pic"><img src="images/user-avtar/pic4.jpg" alt=""></div>
+                                    <div class="single-user-com-text">${message.content}</div>
+                                    <div class="single-user-msg-time">${new Date(message.timestamp).toLocaleTimeString()}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    document.getElementById("msg-chat-wrap").innerHTML += messageBlock; // Append the new message
+                });
+
+                alert("Connected to WebSocket!");
+            });
+        }
+
+        function sendMessage() {
+            const senderUid = localStorage.getItem("loggedUserUid");
+            const receiverUid = document.getElementById("receiverId").value;
+            const messageText = document.getElementById("messageContent").value;
+
+            if (!receiverUid || !messageText) {
+                alert("Please fill all fields.");
+                return;
+            }
+
+            const message = {
+                sender: { uid: senderUid },
+                receiver: { uid: receiverUid },
+                content: messageText,
+                timestamp: new Date().toISOString()
+            };
+
+            // Send the message to the WebSocket server
+            stompClient.send("/app/chat", {}, JSON.stringify(message));
+            document.getElementById("messageContent").value = ""; // Clear the message input
+        }
+
+        // Connect to WebSocket server when the page loads
+        window.onload = connect;
+    </script>
+
+
 
 </body>
 

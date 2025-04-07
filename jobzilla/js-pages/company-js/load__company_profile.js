@@ -20,6 +20,7 @@ $(document).ready(function () {
             response.forEach(company2 => {
                 let companyID = company2.cid;
                 console.log(">>>>>Company ID:", companyID);
+                localStorage.setItem("loggedUseCid",companyID)
 
 
             $.ajax({

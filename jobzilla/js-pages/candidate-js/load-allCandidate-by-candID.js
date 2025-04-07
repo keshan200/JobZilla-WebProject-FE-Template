@@ -40,7 +40,7 @@ function loadCandidates(candidates) {
                             <div class="col-lg-8 col-md-12">
                                 <!-- Candidate detail START -->
                                 <div class="cabdidate-de-info">
-                                    <div class="twm-candi-self-wrap overlay-wraper" style="background-image:url(candidate-bg.jpg);">
+                                    <div class="twm-candi-self-wrap overlay-wraper" style="background-image:url(//candidate-bg.jpg);">
                                         <div class="overlay-main site-bg-primary opacity-01"></div>
                                         <div class="twm-candi-self-info">
                                             <div class="twm-candi-self-top">
@@ -73,17 +73,8 @@ function loadCandidates(candidates) {
 
                                     <div class="tw-sidebar-tags-wrap"  >
                                         <div class="tagcloud" id="skillsContainer-${cand.cand_id}">
-                                          <!--  <a href="javascript:void(0)">Finance</a>
-                                            <a href="javascript:void(0)">Sales</a>
-                                            <a href="javascript:void(0)">Part-time</a>
-                                            <a href="javascript:void(0)">Administration</a>
-                                            <a href="javascript:void(0)">Retail</a>
-                                            <a href="javascript:void(0)">Engineering</a>
-                                            <a href="javascript:void(0)">Developer</a>
-                                            <a href="javascript:void(0)">Work from home</a>
-                                            <a href="javascript:void(0)">IT Consulting</a>
-                                            <a href="javascript:void(0)">Manufacturing</a>-->
-                                        </div>
+                                       
+                                       </div>
                                     </div>
 
                                     <h4 class="twm-s-title">Work Experience</h4>
