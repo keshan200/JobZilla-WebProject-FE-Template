@@ -5,6 +5,16 @@ $(document).ready(function () {
     let userRole = localStorage.getItem("Role");
     let name = localStorage.getItem("name");
 
+
+    $(document).on("click", "#logOut", function() {
+        localStorage.clear();
+        window.location.href = "index.html";
+    });
+
+
+
+
+
     // If user is logged in
     if (authToken && userRole && name) {
         $("#authSection").html(`
@@ -85,7 +95,7 @@ $(document).ready(function () {
                                             <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
                                             <li><a href="dash-messages.html"><i class="fa fa-envelope"></i> Messages</a></li>
                                             <li><a href="dash-my-profile.html"><i class="fa fa-user"></i> Profile</a></li>
-                                            <li><a href="index.html"><i class="fa fa-share-square"></i> Logout</a></li>
+                                            <li id="logOut"><a href="javascript:void(0);"><i class="fa fa-share-square"></i> Logout</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -117,5 +127,6 @@ $(document).ready(function () {
             }
         });
     });
+
 
 });

@@ -57,7 +57,7 @@ function loadJobs(jobs) {
 
                                                     <!--banner img-->
                                                     <div class="twm-media">
-                                                        <img src="http://localhost:8080/uploads/${job.company.logo_img}" alt="#">
+                                                        <img  alt="#">
                                                     </div>
 
 
@@ -358,9 +358,9 @@ function loadJobs(jobs) {
                                     <div class="twm-s-info3">
                                         <div class="twm-s-info-logo-section">
                                             <div class="twm-media">
-                                                  <img src="http://localhost:8080/uploads/${job.company.logo_img}" alt="#">
+                                                  <img  alt="#">
                                             </div>
-                                            <h4 class="twm-title">${job.jobTitle}</h4>
+                                            <h4 class="twm-title">${job.company.company_name}</h4>
                                         </div>
                                         <ul>
 
@@ -375,7 +375,7 @@ function loadJobs(jobs) {
                                                 <div class="twm-s-info-inner">
                                                     <i class="fas fa-mobile-alt"></i>
                                                     <span class="twm-title">Phone</span>
-                                                    <div class="twm-s-info-discription">${job.company.user.mobile}</div>
+                                                    <div class="twm-s-info-discription">remove</div>
                                                 </div>
                                             </li>
                                             <li>

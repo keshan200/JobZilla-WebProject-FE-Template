@@ -22,6 +22,7 @@ function loadCandidates(candidates) {
 
     candidates.forEach(cand => {
         console.log(" carddid",cand.cand_id)
+        console.log("img url",cand.img)
         let candidateCard =
               ` <li> <div class="twm-candidates-list-style1 mb-5">
                                              <div class="twm-media">

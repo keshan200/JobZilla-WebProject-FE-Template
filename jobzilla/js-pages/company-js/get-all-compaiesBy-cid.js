@@ -14,6 +14,17 @@ $(document).ready(function () {
 
            response.forEach(company => {
 
+               $('#name').val(company.company_name);
+               $('#tel').val(company.company_phone);
+               $('#email').val(company.company_Email);
+               $('#website').val(company.website);
+               $('#est').val(company.est_since);
+               $('#country').val(company.country);
+               $('#city').val(company.city);
+               $('#postcode')
+               $('#fulladrs').val(company.full_address);
+               $('#desc').val(company.description);
+
 
                console.log("com IMg",company.logo_img)
                 let companyDetailsHtml =
@@ -72,8 +83,8 @@ $(document).ready(function () {
                         
                 </div>
           
-                                              <!--Top Wide banner End-->
-                                              <div class="container">
+          <!--Top Wide banner End-->
+        <div class="container">
                     <div class="section-content">
                         <div class="row d-flex justify-content-center">
 
@@ -202,9 +213,11 @@ $(document).ready(function () {
                                     
                               
                                     
-                                    <div class="twm-two-part-section">
+                                  <!--  <div class="twm-two-part-section">
                                         <div class="row">
 
+
+                                            &lt;!&ndash;video gallery&ndash;&gt;
                                             <div class="col-lg-12 col-md-12 m-b30">
                                                 <h4 class="twm-s-title">Video</h4>
                                                 <div class="video-section-first" style="background-image: url(../../images/video-bg.jpg);">
@@ -215,7 +228,8 @@ $(document).ready(function () {
                                                 </div> 
                                             </div>
 
-                                            <div class="col-lg-12 col-md-12">
+                                            &lt;!&ndash;image galery&ndash;&gt;
+                                           &lt;!&ndash; <div class="col-lg-12 col-md-12">
                                                 <h4 class="twm-s-title">Office Photos</h4>
                                                 <div class="tw-sidebar-gallery-2">
                                                     <div class="row">
@@ -295,10 +309,10 @@ $(document).ready(function () {
                                                     </div>
                 
                                                 </div> 
-                                            </div>
+                                            </div>&ndash;&gt;
 
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                     <h4 class="twm-s-title">Available Jobs</h4>
                                     <div class="twm-jobs-list-wrap">

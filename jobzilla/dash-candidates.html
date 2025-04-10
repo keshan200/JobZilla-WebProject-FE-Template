@@ -45,7 +45,11 @@
     <!-- SIDE SWITCHER STYLE SHEET -->
     <link rel="stylesheet" type="text/css" href="css/switcher.css">   
         
-
+   <style>
+       .odd{
+           display: none;
+       }
+   </style>
 
 </head>
 
@@ -354,55 +358,12 @@
                                                 <th></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="applicationTableBody">
                                             <!--1-->
-                                            <tr>
-                                                <td><input type="checkbox" ></td>
-                                                <td>
-                                                    <div class="twm-DT-candidates-list">
-                                                        <div class="twm-media">
-                                                            <div class="twm-media-pic">
-                                                               <img src="images/candidates/pic1.jpg" alt="#">
-                                                            </div>
-                                                        </div>
-                                                        <div class="twm-mid-content">
-                                                            <a href="#" class="twm-job-title">
-                                                                <h4>Wanda Montgomery </h4>
-                                                                <p class="twm-candidate-address">
-                                                                    <i class="feather-map-pin"></i>New York
-                                                                </p>
-                                                            </a>
-                                                            
-                                                        </div>
-                                                        
-                                                    </div>
-                                                </td>
-                                                <td>UI Designer</td>
-                                                <td>15/06/2023 at 10:35 am</td>
-                                                <td><div class="twm-jobs-category"><span class="twm-bg-green">Approved</span></div></td>
-                                                <td>
-                                                    <div class="twm-table-controls">
-                                                        <ul class="twm-DT-controls-icon list-unstyled">
-                                                            <li>
-                                                                <button title="View profile" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                    <span class="fa fa-eye"></span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button title="Send message" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                    <span class="far fa-envelope-open"></span>
-                                                                </button>
-                                                            </li>
-                                                            <li>
-                                                                <button title="Delete" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                    <span class="far fa-trash-alt"></span>
-                                                                </button>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <!--2-->
+
+
+
+    <!--                                        &lt;!&ndash;2&ndash;&gt;
                                             <tr>
                                                 <td><input type="checkbox" ></td>
                                                 <td>
@@ -450,7 +411,7 @@
                                                 </td>
                                             </tr>
 
-                                            <!--3-->
+                                            &lt;!&ndash;3&ndash;&gt;
                                             <tr>
                                                 <td><input type="checkbox" ></td>
                                                 <td>
@@ -498,7 +459,7 @@
                                                 </td>
                                             </tr>
 
-                                            <!--4-->
+                                            &lt;!&ndash;4&ndash;&gt;
                                             <tr>
                                                 <td><input type="checkbox" ></td>
                                                 <td>
@@ -546,7 +507,7 @@
                                                 </td>
                                             </tr>
 
-                                            <!--5-->
+                                            &lt;!&ndash;5&ndash;&gt;
                                             <tr>
                                                 <td><input type="checkbox" ></td>
                                                 <td>
@@ -594,7 +555,7 @@
                                                 </td>
                                             </tr>
 
-                                            <!--6-->
+                                            &lt;!&ndash;6&ndash;&gt;
                                             <tr>
                                                 <td><input type="checkbox" ></td>
                                                 <td>
@@ -641,7 +602,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <!--7-->
+                                            &lt;!&ndash;7&ndash;&gt;
                                             <tr>
                                                 <td><input type="checkbox" ></td>
                                                 <td>
@@ -689,7 +650,7 @@
                                                 </td>
                                             </tr>
 
-                                            <!--8-->
+                                            &lt;!&ndash;8&ndash;&gt;
                                             <tr>
                                                 <td><input type="checkbox" ></td>
                                                 <td>
@@ -737,7 +698,7 @@
                                                 </td>
                                             </tr>
 
-                                            <!--9-->
+                                            &lt;!&ndash;9&ndash;&gt;
                                             <tr>
                                                 <td><input type="checkbox" ></td>
                                                 <td>
@@ -785,7 +746,7 @@
                                                 </td>
                                             </tr>
 
-                                            <!--10-->
+                                            &lt;!&ndash;10&ndash;&gt;
                                             <tr>
                                                 <td><input type="checkbox" ></td>
                                                 <td>
@@ -833,7 +794,7 @@
                                                 </td>
                                             </tr>
 
-                                            <!--11-->
+                                            &lt;!&ndash;11&ndash;&gt;
                                             <tr>
                                                 <td><input type="checkbox" ></td>
                                                 <td>
@@ -881,7 +842,7 @@
                                                 </td>
                                             </tr>
 
-                                            <!--12-->
+                                            &lt;!&ndash;12&ndash;&gt;
                                             <tr>
                                                 <td><input type="checkbox" ></td>
                                                 <td>
@@ -929,7 +890,7 @@
                                                 </td>
                                             </tr>
 
-                                            <!--13-->
+                                            &lt;!&ndash;13&ndash;&gt;
                                             <tr>
                                                 <td><input type="checkbox" ></td>
                                                 <td>
@@ -975,9 +936,11 @@
                                                         </ul>
                                                     </div>
                                                 </td>
-                                            </tr>
+                                            </tr>-->
                                             
                                         </tbody>
+
+
                                         <tfoot>
                                             <tr>
                                                 <th></th>
@@ -1067,6 +1030,17 @@
 <script  src="js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script  src="js/switcher.js"></script><!-- SHORTCODE FUCTIONS  -->
+
+
+
+<script src="js-pages/application-js/applicatants-By-CompanyID.js"></script>
+
+
+
+
+
+
+
 
 <!-- STYLE SWITCHER  ======= --> 
 <div class="styleswitcher">

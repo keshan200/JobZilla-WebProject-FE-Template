@@ -3,7 +3,7 @@ $(document).ready(function () {
     let authToken = localStorage.getItem("authToken");
 
     console.log("??????", authToken)
-    console.log(">>>>>> log id", loggedInUserId);
+    console.log(">>>>>> log user id", loggedInUserId);
 
     $.ajax({
         url: `http://localhost:8080/api/v1/candidate/user/${loggedInUserId}`,
@@ -21,6 +21,8 @@ $(document).ready(function () {
 
                 localStorage.setItem("candidateId", candidateId);
                 console.log("Candidate ID saved:", candidateId);
+
+
             }
 
             },
@@ -93,6 +95,11 @@ $(".sendApplication").click(()=>{
         },
 
         success:(res)=>{
+
+            if (loggedCandidate === null){
+                alert("make sure your profile complete")
+            }
+
             console.log("Application submitted:", res);
             alert("Application submitted successfully!");
 
@@ -100,6 +107,12 @@ $(".sendApplication").click(()=>{
 
 
         error: (error) => {
+
+            if (loggedCandidate === null){
+                alert("make sure your profile complete")
+            }
+
+
             console.error("Submission error:", error);
             alert("Failed to submit application.");
         }

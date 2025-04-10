@@ -4,6 +4,7 @@ $(document).ready(function () {
         method: "GET",
         success: function (response) {
             loadCompanies(response);
+            console.log("company set eka",response)
         },
         error: function (xhr) {
             console.error("Error:", xhr.responseText);

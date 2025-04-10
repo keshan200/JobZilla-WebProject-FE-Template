@@ -70,9 +70,8 @@
 <script>
     let stompClient;
 
-    if (!localStorage.getItem("loggedUserUid")) {
-        localStorage.setItem("loggedUserUid", "ec0fc234-d7f2-42d9-a5c0-da5ab3249fb6"); // Example user UID
-    }
+ let senderId = localStorage.getItem("loggedUser")
+  console.log("senderID",senderId)
 
     function connect() {
         const socket = new SockJS("http://localhost:8080/ws");
@@ -92,7 +91,8 @@
     }
 
     function sendMessage() {
-        const senderUid = localStorage.getItem("loggedUserUid");
+      /*  const senderUid = localStorage.getItem("loggedUser");*/
+        const senderUid = "769ab54a-0c9c-45b1-8efd-0340a4744194";
         const receiverUid = document.getElementById("receiverId").value;
         const messageText = document.getElementById("messageContent").value;
 

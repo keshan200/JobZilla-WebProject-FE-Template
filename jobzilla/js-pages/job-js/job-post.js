@@ -8,13 +8,15 @@ $(document).ready(function () {
         let companyID = localStorage.getItem("cid");
         let loggedUserCID = localStorage.getItem("loggedUserCid");
 
+
         let companyCID = null;
-        if (loggedUserCID) {
+
+
+        if (loggedUserCID !== null && loggedUserCID !== undefined) {
             companyCID = loggedUserCID;
         } else {
             companyCID = companyID;
         }
-
 
         console.log("assign una cid",companyCID)
 

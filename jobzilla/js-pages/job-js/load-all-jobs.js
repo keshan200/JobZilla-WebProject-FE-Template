@@ -56,7 +56,7 @@ $(document).ready(function () {
 
 
         error:(err)=>{
-            console.log("chora")
+            console.error("chora")
         }
 
 

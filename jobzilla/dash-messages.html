@@ -494,34 +494,41 @@
                             <a href="#" class="message-action"><i class="far fa-trash-alt"></i> Delete Conversation</a>
                         </div>
                         <div id="msg-chat-wrap" class="single-user-msg-conversation scrollbar-macosx">
-                        
-                            <div class="single-user-comment-wrap">
+
+
+                            <!--incoming-->
+                            <!--<div class="single-user-comment-wrap">
                                 <div class="row">
                                     <div class="col-xl-9 col-lg-12">
                                         <div class="single-user-comment-block clearfix">
-                                            <div class="single-user-com-pic"><img src="images/user-avtar/pic4.jpg" alt=""></div>
-                                            <div class="single-user-com-text">Breaking the endless cycle of meaningless text message conversations starts with only talking to someone who offers interesting topics opinions.</div>
-                                            <div class="single-user-msg-time">12:13 PM</div>
+                                            <div id="receiverImg" class="single-user-com-pic"><img src="images/user-avtar/pic4.jpg" alt=""></div>
+                                            <div id="receiverImg" class="single-user-com-text">Breaking the endless cycle of meaningless text message conversations starts with only talking to someone who offers interesting topics opinions.</div>
+                                            <div id="receiverTime" class="single-user-msg-time">12:13 PM</div>
                                         </div>
                                     </div>
                             	
                                 </div>
                                 
+                            </div>-->
+                            <div id="msg-chat-wrap" class="single-user-msg-conversation scrollbar-macosx">
+                                <!-- Messages will appear here -->
                             </div>
-                            
+
+
+                            <!--sending-->
                             <div class="single-user-comment-wrap sigle-user-reply">
                                 <div class="row justify-content-end">
                                     <div class="col-xl-9 col-lg-12">
                                         <div class="single-user-comment-block clearfix">
-                                            <div class="single-user-com-pic"><img src="images/user-avtar/pic1.jpg" alt=""></div>
-                                            <div class="single-user-com-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</div>
-                                            <div class="single-user-msg-time">12:37 PM</div>
+                                            <div id="senderImg" class="single-user-com-pic"><img src="images/user-avtar/pic1.jpg" alt=""></div>
+                                            <div id="senderMsg" class="single-user-com-text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</div>
+                                            <div id="senderTime" class="single-user-msg-time">12:37 PM</div>
                                         </div>
                                     </div>
                                 </div>
                             </div> 
                             
-                            <div class="single-user-comment-wrap">
+                     <!--       <div class="single-user-comment-wrap">
                                 <div class="row">
                                     <div class="col-xl-9 col-lg-12">
                                         <div class="single-user-comment-block clearfix">
@@ -571,14 +578,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div> -->
                                
                             
                         </div>
                         <div class="single-msg-reply-comment">
                             <div class="input-group">
-                                <textarea class="form-control" placeholder="Type a message here"></textarea>
-                                <button class="btn" type="button"><i class="fa fa-paper-plane"></i></button>
+                                <textarea id="messageTextArea" class="form-control" placeholder="Type a message here"></textarea>
+                                <button id="sendBtn" class="btn" type="button"><i class="fa fa-paper-plane"></i></button>
                             </div>
                         </div>
                     </div>
@@ -686,14 +693,12 @@
 </div>
 <!-- STYLE SWITCHER END ==== -->
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.2/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script>
         let stompClient;
 
-        if (!localStorage.getItem("loggedUserUid")) {
-            localStorage.setItem("loggedUserUid", "ec0fc234-d7f2-42d9-a5c0-da5ab3249fb6");
-        }
-
+        // Connect to WebSocket
         function connect() {
             const socket = new SockJS("http://localhost:8080/ws");
             stompClient = Stomp.over(socket);
@@ -701,36 +706,23 @@
             stompClient.connect({}, function (frame) {
                 console.log("Connected: " + frame);
 
-
+                // Subscribe to messages sent to the logged-in user
                 stompClient.subscribe("/user/queue/messages", function (messageOutput) {
-                    console.log("Received: ", JSON.parse(messageOutput.body));
-                    const message = JSON.parse(messageOutput.body);
+                    const messageData = JSON.parse(messageOutput.body);
 
-
-                    const messageBlock = `
-                    <div class="single-user-comment-wrap">
-                        <div class="row">
-                            <div class="col-xl-9 col-lg-12">
-                                <div class="single-user-comment-block clearfix">
-                                    <div class="single-user-com-pic"><img src="images/user-avtar/pic4.jpg" alt=""></div>
-                                    <div class="single-user-com-text">${message.content}</div>
-                                    <div class="single-user-msg-time">${new Date(message.timestamp).toLocaleTimeString()}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                    document.getElementById("msg-chat-wrap").innerHTML += messageBlock; // Append the new message
+                    // Add received message to the chat box
+                    displayMessage(messageData, "received");
                 });
 
                 alert("Connected to WebSocket!");
             });
         }
 
+        // Send message
         function sendMessage() {
-            const senderUid = localStorage.getItem("loggedUserUid");
-            const receiverUid = document.getElementById("receiverId").value;
-            const messageText = document.getElementById("messageContent").value;
+            const senderUid = localStorage.getItem("loggedUser");
+            const receiverUid = document.getElementById("receiverId").value.trim();
+            const messageText = document.getElementById("messageContent").value.trim();
 
             if (!receiverUid || !messageText) {
                 alert("Please fill all fields.");
@@ -740,19 +732,112 @@
             const message = {
                 sender: { uid: senderUid },
                 receiver: { uid: receiverUid },
-                content: messageText,
-                timestamp: new Date().toISOString()
+                content: messageText
             };
 
-            // Send the message to the WebSocket server
             stompClient.send("/app/chat", {}, JSON.stringify(message));
-            document.getElementById("messageContent").value = ""; // Clear the message input
+            console.log("Message Sent:", message);
+
+            // Add the sent message to the chat box
+            displayMessage({ content: messageText }, "sent");
+
+            document.getElementById("messageContent").value = ""; // Clear message input
         }
 
-        // Connect to WebSocket server when the page loads
+        // Display a message in the chat box
+        function displayMessage(message, type) {
+            const chatWrap = document.getElementById("msg-chat-wrap");
+
+            const messageHTML = `
+            <div class="single-user-comment-wrap ${type === "sent" ? "sigle-user-reply" : ""}">
+                <div class="row ${type === "sent" ? "justify-content-end" : ""}">
+                    <div class="col-xl-9 col-lg-12">
+                        <div class="single-user-comment-block clearfix">
+                            <div class="single-user-com-pic">
+                                <img src="${type === "sent" ? "images/user-avtar/pic1.jpg" : "images/user-avtar/pic4.jpg"}" alt="User">
+                            </div>
+                            <div class="single-user-com-text">${message.content}</div>
+                            <div class="single-user-msg-time">${new Date().toLocaleTimeString()}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+
+            chatWrap.innerHTML += messageHTML;
+            chatWrap.scrollTop = chatWrap.scrollHeight; // Scroll to the latest message
+        }
+
+        // Connect to WebSocket on page load
         window.onload = connect;
     </script>
 
+<!--<script>
+    let stompClient;
+
+    function connect() {
+        const socket = new SockJS("http://localhost:8080/ws");
+        stompClient = Stomp.over(socket);
+
+        stompClient.connect({}, function (frame) {
+            console.log("Connected: " + frame);
+
+            // Subscribe to messages sent to the logged-in user
+            stompClient.subscribe("/user/queue/messages", function (messageOutput) {
+                const messageData = JSON.parse(messageOutput.body);
+
+                // Add message to the chat box dynamically
+                displayMessage(messageData);
+            });
+
+            alert("Connected to WebSocket!");
+        });
+    }
+
+    function sendMessage() {
+        const senderUid = localStorage.getItem("loggedUser");
+        const receiverUid = document.getElementById("receiverId").value;
+        const messageText = document.getElementById("messageContent").value;
+
+        if (!receiverUid || !messageText) {
+            alert("Please fill all fields.");
+            return;
+        }
+
+        const message = {
+            sender: { uid: senderUid },
+            receiver: { uid: receiverUid },
+            content: messageText
+        };
+
+        stompClient.send("/app/chat", {}, JSON.stringify(message));
+        console.log("Message Sent:", message);
+
+        document.getElementById("messageContent").value = ""; // Clear message input
+    }
+
+    // Function to display the message in the chat box
+    function displayMessage(message) {
+        const chatWrap = document.getElementById("msg-chat-wrap");
+
+        const messageHTML = `
+        <div class="single-user-comment-wrap">
+            <div class="row">
+                <div class="col-xl-9 col-lg-12">
+                    <div class="single-user-comment-block clearfix">
+                        <div class="single-user-com-pic"><img src="images/user-avtar/pic4.jpg" alt=""></div>
+                        <div class="single-user-com-text">${message.content}</div>
+                        <div class="single-user-msg-time">${new Date().toLocaleTimeString()}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+        chatWrap.innerHTML += messageHTML;
+    }
+
+</script>-->
 
 
 </body>
