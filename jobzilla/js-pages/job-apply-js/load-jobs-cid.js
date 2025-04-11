@@ -116,7 +116,7 @@ $.ajax({
         "Authorization": "Bearer " + authToken
     },
     success: (response) => {
-        // Check if response is valid and an array
+
         if (Array.isArray(response) && response.length > 0) {
             response.forEach(company2 => {
                 let companyID = company2.cid;

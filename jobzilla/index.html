@@ -244,46 +244,37 @@
                             <div class="twm-bnr-title-large">Find Top IT <span class="text-clr-pink">Jobs</span></div>
                             <div class="twm-bnr-title-light">For talent Developers</div>
                             <div class="twm-bnr-search-bar">
-                                <form>
+                                <form id="jobSearchForm">
                                     <div class="row">
-                                        <!--Title-->
+                                        <!-- Title -->
                                         <div class="form-group col-xl-3 col-lg-6 col-md-6">
                                             <label>What</label>
-                                            <select class="wt-search-bar-select selectpicker"  data-live-search="true" title="" id="j-Job_Title" data-bv-field="size">
-                                                <option disabled selected value="">Select Category</option>
-                                                <option selected>Job Title</option>
-                                                <option>Web Designer</option>
-                                                <option>Developer</option>
-                                                <option>Acountant</option>
-                                            </select>
+                                            <input placeholder="Title" class="wt-search-bar-select selectpicker" data-live-search="true" title="" id="j-Job_Title" data-bv-field="size">
+
+                                            </input>
                                         </div>
 
-                                        <!--All Category-->
+                                        <!-- All Category -->
                                         <div class="form-group col-xl-3 col-lg-6 col-md-6">
                                             <label>Type</label>
-                                            <select class="wt-search-bar-select selectpicker"  data-live-search="true" title="" id="j-All_Category" data-bv-field="size">
-                                                <option disabled selected value="">Select Category</option>
-                                                <option selected>All Category</option>
-                                                <option>Web Designer</option>
-                                                <option>Developer</option>
-                                                <option>Acountant</option>
-                                            </select>
+                                            <input placeholder="Type" class="wt-search-bar-select selectpicker" data-live-search="true" title="" id="j-All_Category" data-bv-field="size">
+
+                                            </input>
                                         </div>
 
-                                        <!--Location-->
+                                        <!-- Location -->
                                         <div class="form-group col-xl-3 col-lg-6 col-md-6">
                                             <label>Location</label>
                                             <div class="twm-inputicon-box">
-                                                <input name="username" type="text" required class="form-control" placeholder="Location">
+                                                <input name="location" id="location" type="text" required class="form-control" placeholder="Location">
                                                 <i class="twm-input-icon fas fa-map-marker-alt"></i>
                                             </div>
                                         </div>
 
-                                        <!--Find job btn-->
+                                        <!-- Find job button -->
                                         <div class="form-group col-xl-3 col-lg-6 col-md-6">
-                                            <button type="button" class="site-button">Find Job</button>
+                                            <button type="button" id="findJobButton" class="site-button">Find Job</button>
                                         </div>
-
                                     </div>
                                 </form>
                             </div>
@@ -1910,6 +1901,8 @@
 <!--<script src="js/login.js"></script>-->
 <script src="js/login_new.js"></script>
 <script src="js-pages/company-js/company-register.js"></script>
+<script src="js-pages/job-js/job-search-from-home.js"></script>
+    <script src="js-pages/job-js/filterd-jobs.js"></script>
 
 <!-- STYLE SWITCHER  ======= --> 
 <div class="styleswitcher">
