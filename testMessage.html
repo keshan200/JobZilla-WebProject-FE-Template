@@ -91,9 +91,8 @@
     }
 
     function sendMessage() {
-      /*  const senderUid = localStorage.getItem("loggedUser");*/
-        const senderUid = "769ab54a-0c9c-45b1-8efd-0340a4744194";
-        const receiverUid = document.getElementById("receiverId").value;
+        const senderUid ="10cd84c5-bb76-4053-8bbd-055f9a55e8f7";
+        const receiverUid ="1adce813-1ac7-4dc2-a687-88fdb3a16a82"
         const messageText = document.getElementById("messageContent").value;
 
         if (!receiverUid || !messageText) {
@@ -110,7 +109,7 @@
         stompClient.send("/app/chat", {}, JSON.stringify(message));
         console.log("Message Sent:", message);
 
-        document.getElementById("messageContent").value = ""; // Clear message input
+        document.getElementById("messageContent").value = "";
     }
 </script>
 </body>

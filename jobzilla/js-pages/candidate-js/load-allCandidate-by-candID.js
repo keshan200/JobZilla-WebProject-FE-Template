@@ -10,6 +10,7 @@ $(document).ready( ()=> {
         url:`http://localhost:8080/api/v1/candidate/getCandidateByCandId/${candidateId}`,
         method:"GET",
 
+
         success:(response)=>{
             loadCandidates(response)
         },
@@ -30,13 +31,51 @@ function loadCandidates(candidates) {
     console.log("candidate set eka",candidates)
 
     candidates.forEach(cand => {
-        console.log("imges",cand.img)
 
-        console.log("Candidate Image URL:", "http://localhost:8080/uploads/candidate/" + cand.img);
+        let imgSrc = cand.img && cand.img.startsWith("data:image")
+            ? cand.img // Base64 string
+            : cand.img && cand.img.trim() !== ""
+                ? `http://localhost:8080/uploads/${cand.img}` // File path
+                : "";
 
         let candidateDetails =
             `<div class="row d-flex justify-content-center">
+                     
+                     <style>
+                     .message-icon-container {
+            display: inline-flex;
+            align-items: center;
+            background-color: #3a66db;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
 
+        .message-icon-container:hover {
+            background-color: #2a56cb;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .message-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+
+        .message-text {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* SVG styles for the message icon */
+        .message-bubble {
+            fill: white;
+        }
+</style>
+                 
                             <div class="col-lg-8 col-md-12">
                                 <!-- Candidate detail START -->
                                 <div class="cabdidate-de-info">
@@ -44,9 +83,9 @@ function loadCandidates(candidates) {
                                         <div class="overlay-main site-bg-primary opacity-01"></div>
                                         <div class="twm-candi-self-info">
                                             <div class="twm-candi-self-top">
-                                                <div class="twm-candi-fee">$20 / Day</div>
+                                                <div class="twm-candi-fee"> </div>
                                                 <div class="twm-media">
-                                                    <img src="http://localhost:8080/uploads/${cand.img}" alt="#">
+                                                    <img src="${imgSrc}" alt="#">
                                                 </div>
                                                 <div class="twm-mid-content">
 
@@ -59,7 +98,18 @@ function loadCandidates(candidates) {
                                             </div>
                                             <div class="twm-candi-self-bottom">
                                                 <a href="javascript:;" class="site-button outline-white">Hire Me Now</a>
+                                                
+                                                <div class="message-icon-container">
+                                                     <svg class="message-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                       <path class="message-bubble" d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H6L4 18V4H20V16Z"/>
+                                                      </svg>
+                                                  <span class="message-text">Message</span>
+                                                     </div>
+                                                     
+                                                     
+                                                     
                                                 <a href="javascript:;" class="site-button secondry">Download CV</a>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -278,5 +328,7 @@ function loadCandidates(candidates) {
             skillsContainer.append("<span>No skills listed</span>");
         }
     });
+
+
 
 }

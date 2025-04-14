@@ -50,6 +50,11 @@ $(document).ready(function () {
 
                                 <a href="https://themeforest.net/user/thewebmax/portfolio" class="twm-employer-websites">${company.website}</a>
 
+                                <a class="btn message-btn" href="javascript:void(0)" style="background-color: #000; color: #fff;border-radius: 10px;margin-bottom: 28px">
+                                     <i class="fa fa-comment"></i> Message
+                                    </a>
+
+
                                 <div class="twm-ep-detail-tags">
                                     <button class="de-info twm-bg-green"><i class="fa fa-check"></i> Verified</button>
                                     <button class="de-info twm-bg-brown"><i class="fa fa-heart"></i> Add To Favorite</button>

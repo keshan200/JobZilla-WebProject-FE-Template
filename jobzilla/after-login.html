@@ -94,34 +94,39 @@
                                         
                                         <ul class="nav nav-tabs" id="myTab2" role="tablist">
 
-                                            <!--Login Candidate-->  
+                                            <!--Login Candidate-->
                                             <li class="nav-item">
-                                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#twm-login-candidate" type="button"><i class="fas fa-user-tie"></i>Candidate</button>
+
                                             </li>
                                             <!--Login Employer-->
                                             <li class="nav-item">
-                                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#twm-login-Employer" type="button"><i class="fas fa-building"></i>Employer</button>
+
                                             </li>
                                         
                                         </ul>
                                         
                                         <div class="tab-content" id="myTab2Content">
-                                            <!--Login Candidate Content-->  
+                                            <!--Login Candidate Content-->
                                             <div class="tab-pane fade show active" id="twm-login-candidate">
                                                 <div class="row">
 
+                                                    <!-- loginEmail
+
+    loginEmail
+    loginBtn-->
+
                                                     <div class="col-lg-12">
                                                         <div class="form-group mb-3">
-                                                            <input name="username" type="text" required="" class="form-control" placeholder="Usearname*">
+                                                            <input id="email" name="username" type="text" required="" class="form-control" placeholder="Usearname*">
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="col-lg-12">
                                                         <div class="form-group mb-3">
-                                                            <input name="email" type="text" class="form-control" required="" placeholder="Password*">
+                                                            <input id="password" name="email" type="text" class="form-control" required="" placeholder="Password*">
                                                         </div>
                                                     </div>
-                                                    
+
                                                     <div class="col-lg-12">
                                                         <div class="twm-forgot-wrap">
                                                             <div class="form-group mb-3">
@@ -135,7 +140,7 @@
 
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <button type="submit" class="site-button">Log in</button>
+                                                            <button id="loginButton" type="button" class="site-button">Log in</button>
                                                         </div>
                                                     </div>
 
@@ -162,8 +167,8 @@
                                                             </button>
                                                         </div>
                                                     </div>
-                                                    
-                                                    
+
+
                                                 </div>
                                             </div>
                                             <!--Login Employer Content--> 
@@ -687,7 +692,7 @@
 <!-- STYLE SWITCHER END ==== -->
 
 
-
+<script SRC="js-pages/company-js/company_login.js"></script>
 </body>
 
 

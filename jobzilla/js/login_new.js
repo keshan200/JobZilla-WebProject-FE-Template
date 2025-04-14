@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    // Check if user is logged in on page load
+
     let authToken = localStorage.getItem("authToken");
     let userRole = localStorage.getItem("Role");
     let name = localStorage.getItem("name");
@@ -14,8 +14,6 @@ $(document).ready(function () {
 
 
 
-
-    // If user is logged in
     if (authToken && userRole && name) {
         $("#authSection").html(`
             <div class="welcome-message">
@@ -45,7 +43,7 @@ $(document).ready(function () {
         $("#authSection").css("display", "block");
     }
 
-    // Login functionality
+
     $("#loginBtn").click(() => {
         let email = $("#loginEmail").val();
         let password = $("#loginPassword").val();
@@ -67,14 +65,14 @@ $(document).ready(function () {
 
                 console.log(response)
 
-                // Save user info to localStorage
+
                 localStorage.setItem("authToken", Authtoken);
                 localStorage.setItem("userEmail", email);
                 localStorage.setItem("Role", userRole);
                 localStorage.setItem("name", Name);
                 localStorage.setItem("loggedUser", uid);
 
-                // Update the UI with logged in user's info
+
                 $("#sign_up_popup2").modal('hide');
                 $("#signUpButton").hide();
 
@@ -95,7 +93,7 @@ $(document).ready(function () {
                                             <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
                                             <li><a href="dash-messages.html"><i class="fa fa-envelope"></i> Messages</a></li>
                                             <li><a href="dash-my-profile.html"><i class="fa fa-user"></i> Profile</a></li>
-                                            <li id="logOut"><a href="javascript:void(0);"><i class="fa fa-share-square"></i> Logout</a></li>
+                                            <li id="logOut" ><a href=""><i class="fa fa-share-square"></i> Logout</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -130,3 +128,24 @@ $(document).ready(function () {
 
 
 });
+
+
+
+$(document).ready(function () {
+    $("#logOut").click(()=>{
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("Role");
+        localStorage.removeItem("name");
+        localStorage.removeItem("loggedUser");
+
+        window.location.href = "index.html";
+
+
+
+
+    })
+
+
+});
+

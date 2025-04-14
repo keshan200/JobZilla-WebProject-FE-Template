@@ -1,3 +1,4 @@
+/*
 
 
 
@@ -84,7 +85,7 @@ $(document).ready(function () {
 
 
                 if (userRole === 'EMPLOYER'){
-                  /*  window.location.href = "dashboard.html"*/
+                  /!*  window.location.href = "dashboard.html"*!/
                 }
 
             },
@@ -115,7 +116,7 @@ $(document).ready(function () {
 
 
 <!--Account-->
-/*
+/!*
 <ui>
 <li class="header-widget">
     <div class="dashboard-user-section">
@@ -144,4 +145,5 @@ $(document).ready(function () {
         </div>
     </div>
 </li>
-</ui>*/
+</ui>*!/
+*/

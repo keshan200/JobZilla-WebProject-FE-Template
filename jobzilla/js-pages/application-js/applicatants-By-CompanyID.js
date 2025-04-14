@@ -53,9 +53,9 @@ $(document).ready(function () {
                         <div class="twm-table-controls">
                             <ul class="twm-DT-controls-icon list-unstyled">
                                 <li>
-                                    <button title="View profile" data-bs-toggle="tooltip" data-bs-placement="top">
+                                     <a href="${application.resume}" target="_blank" download title="View and Download Resume" data-bs-toggle="tooltip" data-bs-placement="top">
                                         <span class="fa fa-eye"></span>
-                                    </button>
+                                    </a>
                                 </li>
                                 <li>
                                     <button title="Send message" data-bs-toggle="tooltip" data-bs-placement="top">

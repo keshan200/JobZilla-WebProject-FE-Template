@@ -12,6 +12,9 @@ $(document).ready(function () {
                 console.log("Job Object:", job);
                 console.log("Job ID:", job.jobId);
 
+
+
+
                 let container = $(".job_container_head");
                 let baseURL = "http://localhost:8080/uploads/";
                 let companyLogo = job.company && job.company.logo_img

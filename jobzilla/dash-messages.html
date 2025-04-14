@@ -378,7 +378,7 @@
                                 </a>
                             </div>
                             
-                        	<div class="wt-dashboard-msg-search-list-wrap">
+                     <!--   	<div class="wt-dashboard-msg-search-list-wrap">
                             	<a href="javascript:;" class="msg-user-info clearfix">
                                 	<div class="msg-user-timing">4 hours ago</div>
                                 	<div class="msg-user-info-pic"><img src="images/user-avtar/pic2.jpg" alt=""></div>
@@ -475,7 +475,7 @@
                                         <div class="msg-user-discription">All created by our Global</div>
                                     </div>
                                 </a>
-                            </div>
+                            </div>-->
                             
                         	
                                                                                     
@@ -698,7 +698,6 @@
     <script>
         let stompClient;
 
-        // Connect to WebSocket
         function connect() {
             const socket = new SockJS("http://localhost:8080/ws");
             stompClient = Stomp.over(socket);
@@ -706,71 +705,76 @@
             stompClient.connect({}, function (frame) {
                 console.log("Connected: " + frame);
 
-                // Subscribe to messages sent to the logged-in user
-                stompClient.subscribe("/user/queue/messages", function (messageOutput) {
+                const userUid = localStorage.getItem("loggedUser");
+                stompClient.subscribe(`/user/${userUid}/queue/messages`, function (messageOutput) {
                     const messageData = JSON.parse(messageOutput.body);
-
-                    // Add received message to the chat box
                     displayMessage(messageData, "received");
                 });
-
-                alert("Connected to WebSocket!");
             });
         }
 
-        // Send message
-        function sendMessage() {
-            const senderUid = localStorage.getItem("loggedUser");
-            const receiverUid = document.getElementById("receiverId").value.trim();
-            const messageText = document.getElementById("messageContent").value.trim();
 
-            if (!receiverUid || !messageText) {
-                alert("Please fill all fields.");
+
+        function sendMessage() {
+            const senderUid ="63e77d76-3acd-4488-a222-43c2542ec43b ";
+            const receiverUid =" 67b5bd29-38d4-43cd-b056-a4e0d8267b05"
+            const messageText = document.getElementById("messageTextArea").value;
+
+            if (!receiverUid || !messageText.trim()) {
+                alert("Receiver ID and message are required.");
                 return;
             }
 
             const message = {
                 sender: { uid: senderUid },
                 receiver: { uid: receiverUid },
-                content: messageText
+                content: messageText,
             };
 
             stompClient.send("/app/chat", {}, JSON.stringify(message));
-            console.log("Message Sent:", message);
-
-            // Add the sent message to the chat box
             displayMessage({ content: messageText }, "sent");
-
-            document.getElementById("messageContent").value = ""; // Clear message input
+            document.getElementById("messageTextArea").value = "";
         }
 
-        // Display a message in the chat box
         function displayMessage(message, type) {
             const chatWrap = document.getElementById("msg-chat-wrap");
 
+            const escapedContent = message.content.replace(/</g, "&lt;").replace(/>/g, "&gt;");
             const messageHTML = `
-            <div class="single-user-comment-wrap ${type === "sent" ? "sigle-user-reply" : ""}">
-                <div class="row ${type === "sent" ? "justify-content-end" : ""}">
-                    <div class="col-xl-9 col-lg-12">
-                        <div class="single-user-comment-block clearfix">
-                            <div class="single-user-com-pic">
-                                <img src="${type === "sent" ? "images/user-avtar/pic1.jpg" : "images/user-avtar/pic4.jpg"}" alt="User">
-                            </div>
-                            <div class="single-user-com-text">${message.content}</div>
-                            <div class="single-user-msg-time">${new Date().toLocaleTimeString()}</div>
+        <div class="single-user-comment-wrap ${type === "sent" ? "sigle-user-reply" : ""}">
+            <div class="row ${type === "sent" ? "justify-content-end" : ""}">
+                <div class="col-xl-9 col-lg-12">
+                    <div class="single-user-comment-block clearfix">
+                        <div class="single-user-com-pic">
+                            <img src="${type === "sent" ? "images/user-avtar/pic1.jpg" : "images/user-avtar/pic4.jpg"}" alt="User">
                         </div>
+                        <div class="single-user-com-text">${escapedContent}</div>
+                        <div class="single-user-msg-time">${new Date().toLocaleTimeString()}</div>
                     </div>
                 </div>
             </div>
-            `;
+        </div>
+    `;
 
             chatWrap.innerHTML += messageHTML;
-            chatWrap.scrollTop = chatWrap.scrollHeight; // Scroll to the latest message
+            chatWrap.scrollTop = chatWrap.scrollHeight;
         }
 
-        // Connect to WebSocket on page load
-        window.onload = connect;
+        window.onload = function () {
+            connect();
+            document.getElementById("sendBtn").addEventListener("click", sendMessage);
+            document.getElementById("messageTextArea").addEventListener("keypress", function (event) {
+                if (event.key === "Enter" && !event.shiftKey) {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+        };
+
+
     </script>
+
+
 
 <!--<script>
     let stompClient;
@@ -838,6 +842,8 @@
     }
 
 </script>-->
+
+
 
 
 </body>

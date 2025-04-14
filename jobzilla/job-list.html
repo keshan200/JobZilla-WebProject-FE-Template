@@ -265,11 +265,11 @@
 
                                 <div class="sidebar-elements search-bx">
                                                                             
-                                    <form>
+                                    <form id="searchForm">
 
-                                        <div class="form-group mb-4">
+                                  <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">Category</h4>
-                                            <select class="wt-select-bar-large selectpicker"  data-live-search="true" data-bv-field="size">
+                                            <select id= "category" class="wt-select-bar-large selectpicker"  data-live-search="true" data-bv-field="size">
                                                 <option>All Category</option>
                                                 <option>Web Designer</option>
                                                 <option>Developer</option>
@@ -280,7 +280,7 @@
                                         <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">Keyword</h4>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Job Title or Keyword">
+                                                <input id="keyword" type="text" class="form-control" placeholder="Job Title or Keyword">
                                                 <button class="btn" type="button"><i class="feather-search"></i></button>
                                             </div>
                                         </div>
@@ -288,7 +288,7 @@
                                         <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">Location</h4>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search location">
+                                                <input id="location" type="text" class="form-control" placeholder="Search location">
                                                 <button class="btn" type="button"><i class="feather-map-pin"></i></button>
                                             </div>
                                         </div>
@@ -512,6 +512,9 @@
                             <div class="job_container_head twm-jobs-list-wrap"> </div>
 
                             <div class="filter-jobs twm-jobs-list-wrap" ></div>
+
+                            <!--job-list page filter-->
+                            <div id="results"></div>
 
                             <div class="pagination-outer">
                                 <div class="pagination-style1">
@@ -958,6 +961,7 @@
 <script src="js-pages/job-js/load-all-jobs.js"></script>
 <script src="js/login_new.js"></script>
 <script src="js-pages/job-js/filterd-jobs.js"></script>
+<script src="js-pages/job-js/job-list-page-filter.js"></script>
 
 
 
