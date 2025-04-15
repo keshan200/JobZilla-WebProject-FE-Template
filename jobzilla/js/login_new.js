@@ -12,10 +12,8 @@ $(document).ready(function () {
     });
 
 
-
-
     if (authToken && userRole && name) {
-        $("#authSection").html(`
+        $("#accSection").html(`
             <div class="welcome-message">
                 <div class="dashboard-user-section">
                     <div class="listing-user">
@@ -29,10 +27,10 @@ $(document).ready(function () {
                             </a>
                             <div class="dropdown-menu" aria-labelledby="ID-ACCOUNT_dropdown">
                                 <ul>
-                                    <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
-                                    <li><a href="dash-messages.html"><i class="fa fa-envelope"></i> Messages</a></li>
-                                    <li><a href="dash-my-profile.html"><i class="fa fa-user"></i> Profile</a></li>
-                                    <li><a href="index.html"><i class="fa fa-share-square"></i> Logout</a></li>
+                                    <li><a href="candidate-dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                                    <li><a href="candidate-chat.html"><i class="fa fa-envelope"></i> Messages</a></li>
+                                    <li><a href="candidate-profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                                    <li style="color: red;" id="logOut"><i class="fa fa-share-square"></i> Logout</li>
                                 </ul>
                             </div>
                         </div>
@@ -76,34 +74,39 @@ $(document).ready(function () {
                 $("#sign_up_popup2").modal('hide');
                 $("#signUpButton").hide();
 
-                $("#authSection").html(`
-                    <div class="welcome-message">
-                        <div class="dashboard-user-section">
-                            <div class="listing-user">
-                                <div class="dropdown">
-                                    <a href="javascript:;" class="dropdown-toggle" id="ID-ACCOUNT_dropdown" data-bs-toggle="dropdown">
-                                        <div class="user-name text-black">
-                                            <span>
-                                                <img src="images/user-avtar/pic4.jpg" alt="">
-                                            </span>${response.data.name}
-                                        </div>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="ID-ACCOUNT_dropdown">
-                                        <ul>
-                                            <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
-                                            <li><a href="dash-messages.html"><i class="fa fa-envelope"></i> Messages</a></li>
-                                            <li><a href="dash-my-profile.html"><i class="fa fa-user"></i> Profile</a></li>
-                                            <li id="logOut" ><a href=""><i class="fa fa-share-square"></i> Logout</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `);
-                $("#authSection").css("display", "block");
+                $("#accSection").html(`          
+                     <div class="welcome-message">
+                       <div class="dashboard-user-section">
+                           <div class="listing-user">
+                               <div class="dropdown">
+                                   <a href="javascript:;" class="dropdown-toggle" id="ID-ACCOUNT_dropdown" data-bs-toggle="dropdown">
+                                       <div class="user-name text-black">
+                                           <span>
+                                               <img src="images/user-avtar/pic4.jpg" alt="">
+                                           </span>${response.data.name}
+                                       </div>
+                                   </a>
+                                   <div class="dropdown-menu" aria-labelledby="ID-ACCOUNT_dropdown">
+                                       <ul>
+                                           <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                                           <li><a href="dash-messages.html"><i class="fa fa-envelope"></i> Messages</a></li>
+                                           <li><a href="candidate-profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                                           <li style="color: red;" id="logOut"><i class="fa fa-share-square"></i>Logout</li>
+                                       </ul>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div> `);
+
+
+
+                    $("#accSection").css("display", "block");
+
 
             },
+
+
             error: function (xhr, status, error) {
                 console.error("Error:", error);
                 if (xhr.status === 403) {
@@ -129,23 +132,45 @@ $(document).ready(function () {
 
 });
 
-
-
 $(document).ready(function () {
+
+
     $("#logOut").click(()=>{
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("userEmail");
-        localStorage.removeItem("Role");
-        localStorage.removeItem("name");
-        localStorage.removeItem("loggedUser");
 
-        window.location.href = "index.html";
+        $("#accSection").css("display", "none");
+        $("#signUpButton").show();
 
-
-
-
+        console.log("clear");
     })
 
 
-});
 
+})
+
+
+
+
+
+         /*<div class="welcome-message">
+                       <div class="dashboard-user-section">
+                           <div class="listing-user">
+                               <div class="dropdown">
+                                   <a href="javascript:;" class="dropdown-toggle" id="ID-ACCOUNT_dropdown" data-bs-toggle="dropdown">
+                                       <div class="user-name text-black">
+                                           <span>
+                                               <img src="images/user-avtar/pic4.jpg" alt="">
+                                           </span>${response.data.name}
+                                       </div>
+                                   </a>
+                                   <div class="dropdown-menu" aria-labelledby="ID-ACCOUNT_dropdown">
+                                       <ul>
+                                          <!-- <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                                           <li><a href="dash-messages.html"><i class="fa fa-envelope"></i> Messages</a></li>
+                                           <li><a href="candidate-profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                                           <li id="logOut" ><a href=""><i class="fa fa-share-square"></i> Logout</a></li>-->
+                                       </ul>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>*/

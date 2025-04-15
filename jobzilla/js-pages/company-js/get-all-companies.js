@@ -13,7 +13,7 @@ $(document).ready(function () {
 });
 
 
-/* href="employer-detail-v2.html?companyId=${company.cid}" */
+
 
 function loadCompanies(companies) {
     let container = $(".companies-container");
