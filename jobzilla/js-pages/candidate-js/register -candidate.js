@@ -27,6 +27,7 @@ $("#candidate-save").click(function (event) {
         full_address: $("#fullAddress").val(),
         description:$("#desc").val(),
         skills: skillsArray,
+        position:$("#jobCategory").val(),
         user: { uid: loggedInUserId }
     };
 
@@ -34,7 +35,12 @@ $("#candidate-save").click(function (event) {
 
 
     if (!$("#file-uploader")[0].files.length) {
-       alert("file case ekka")
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: '<a href="">Why did this happen?</a>'
+        });
     }
 
     let formData = new FormData();
@@ -52,11 +58,22 @@ $("#candidate-save").click(function (event) {
             'Accept': 'application/json'
         },
         success: function (response) {
-            console.log("rs",response)
-            alert("welcom bosa")
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your operation completed successfully!',
+                showConfirmButton: true,
+                timer: 3000
+            });
+
         },
         error: function (xhr, status, error) {
-            console.error(xhr.responseText || error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error,
+                footer: '<a href="">Why did this happen?</a>'
+            });
             let errorMessage = xhr.responseJSON?.message || "Registration failed!";
         }
     });

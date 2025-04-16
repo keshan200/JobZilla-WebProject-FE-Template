@@ -22,8 +22,13 @@ $("#canBtn").click(()=>{
             role: "CANDIDATE"
         }),
         success: function(data) {
-            alert("suc")
-            console.log("Success:", data);
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your operation completed successfully!',
+                showConfirmButton: true,
+                timer: 3000
+            });
 
             $("#sign_up_popup").modal('hide');
             $("#sign_up_popup2").modal('show');
@@ -31,8 +36,13 @@ $("#canBtn").click(()=>{
 
         },
         error: function(xhr, status, error) {
-            alert("chor")
-            console.error("Error:", error);
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error,
+                footer: '<a href="">Why did this happen?</a>'
+            });
         }
 
     })
@@ -163,7 +173,7 @@ $(document).ready(function () {
         if (!isValid) {
             event.preventDefault();
         } else {
-            alert("Validation passed! Proceeding with submission.");
+
         }
     });
 });

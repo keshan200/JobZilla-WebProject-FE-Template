@@ -35,7 +35,7 @@ function loadCandidates(candidates) {
                                                  <a  class="twm-job-title">
                                                      <h4>${cand.name}</h4>
                                                  </a>
-                                                 <p>Charted Accountant</p>
+                                                 <p>${cand.position}</p>
                                                  
                                                  <div class="twm-fot-content">
                                                      <div class="twm-left-info">

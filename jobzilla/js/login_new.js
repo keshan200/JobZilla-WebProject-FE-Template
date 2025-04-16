@@ -21,7 +21,7 @@ $(document).ready(function () {
                             <a href="javascript:;" class="dropdown-toggle" id="ID-ACCOUNT_dropdown" data-bs-toggle="dropdown">
                                 <div class="user-name text-black">
                                     <span>
-                                        <img src="images/user-avtar/pic4.jpg" alt="">
+                                        <img src="" alt="profile">
                                     </span>${name}
                                 </div>
                             </a>
@@ -82,7 +82,7 @@ $(document).ready(function () {
                                    <a href="javascript:;" class="dropdown-toggle" id="ID-ACCOUNT_dropdown" data-bs-toggle="dropdown">
                                        <div class="user-name text-black">
                                            <span>
-                                               <img src="images/user-avtar/pic4.jpg" alt="">
+                                               <img src="" alt="profile">
                                            </span>${response.data.name}
                                        </div>
                                    </a>

@@ -18,6 +18,7 @@ $("#detailsSaveBtn").click(function (event) {
         country: $("#country").val(),
         city: $("#city").val(),
         full_address: $("#fulladrs").val(),
+
         user:{ uid:loggedInUserId}
     };
 
