@@ -58,6 +58,44 @@ $("#candidate-save").click(function (event) {
             'Accept': 'application/json'
         },
         success: function (response) {
+            let name = localStorage.getItem("name");
+           console.log("candidate reg",response)
+
+
+                let profileImage = response.data.img;
+                console.log("img",profileImage)
+
+            localStorage.setItem("profileImg", profileImage);
+
+            $("#accSection").empty()
+
+            $("#accSection").html(`
+            <div class="dashboard-user-section">
+             <div class="listing-user">
+                <div class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle" id="ID-ACCOUNT_dropdown" data-bs-toggle="dropdown">
+                        <div class="user-name text-black">
+                            <span>
+                                <img src="http://localhost:8080/uploads/${profileImage}" alt="profile">
+                            </span>${name}
+                        </div>
+                    </a>
+                    
+                           <div class="dropdown-menu" aria-labelledby="ID-ACCOUNT_dropdown">
+                                <ul>
+                                    <li><a href="candidate-dashboard.html"><i class="fa fa-home"></i> Dashboard</a></li>
+                                    <li><a href="candidate-chat.html"><i class="fa fa-envelope"></i> Messages</a></li>
+                                    <li><a href="candidate-profile.html"><i class="fa fa-user"></i> Profile</a></li>
+                                    <li style="color: red;" id="logOut"><i class="fa fa-share-square"></i> Logout</li>
+                                </ul>
+                            </div>
+                </div>
+            </div>
+        </div>
+    `);
+
+
+
             Swal.fire({
                 icon: 'success',
                 title: 'Success!',
@@ -65,6 +103,8 @@ $("#candidate-save").click(function (event) {
                 showConfirmButton: true,
                 timer: 3000
             });
+
+
 
         },
         error: function (xhr, status, error) {

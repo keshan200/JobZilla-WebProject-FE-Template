@@ -4,12 +4,14 @@ $(document).ready(function () {
     let authToken = localStorage.getItem("authToken");
     let userRole = localStorage.getItem("Role");
     let name = localStorage.getItem("name");
+    let image = localStorage.getItem("profileImg");
 
 
     $(document).on("click", "#logOut", function() {
         localStorage.clear();
         window.location.href = "index.html";
     });
+
 
 
     if (authToken && userRole && name) {
@@ -21,7 +23,7 @@ $(document).ready(function () {
                             <a href="javascript:;" class="dropdown-toggle" id="ID-ACCOUNT_dropdown" data-bs-toggle="dropdown">
                                 <div class="user-name text-black">
                                     <span>
-                                        <img src="" alt="profile">
+                                    <img src="http://localhost:8080/uploads/${image}" alt="profile">
                                     </span>${name}
                                 </div>
                             </a>
@@ -60,6 +62,7 @@ $(document).ready(function () {
                 let userRole = response.data.role;
                 let Name = response.data.name;
                 let uid = response.data.id;
+                let img = response.data.img;
 
                 console.log(response)
 
@@ -69,10 +72,14 @@ $(document).ready(function () {
                 localStorage.setItem("Role", userRole);
                 localStorage.setItem("name", Name);
                 localStorage.setItem("loggedUser", uid);
+                localStorage.setItem("profileImg",img)
 
 
                 $("#sign_up_popup2").modal('hide');
                 $("#signUpButton").hide();
+
+
+
 
                 $("#accSection").html(`          
                      <div class="welcome-message">
@@ -82,7 +89,7 @@ $(document).ready(function () {
                                    <a href="javascript:;" class="dropdown-toggle" id="ID-ACCOUNT_dropdown" data-bs-toggle="dropdown">
                                        <div class="user-name text-black">
                                            <span>
-                                               <img src="" alt="profile">
+                                                <img src="http://localhost:8080/uploads/${img}" alt="profile">
                                            </span>${response.data.name}
                                        </div>
                                    </a>

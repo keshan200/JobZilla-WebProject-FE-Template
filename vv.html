@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Alert Example</title>
+    <style>
+        /* From Uiverse.io by kyle1dev */
+        body {
+            font-family: "Poppins", sans-serif;
+        }
+
+        .modern-success-message {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            color: white;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            transform: translateY(-200%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .modern-success-message.visible {
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .close-btn:hover {
+            opacity: 1;
+        }
+
+        .icon-wrapper {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .success-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .text-wrapper .title {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .text-wrapper .message {
+            margin-top: 6px;
+            font-size: 14px;
+            opacity: 0.85;
+        }
+    </style>
+</head>
+<body>
+<button id="show-alert-btn">Show Alert</button>
+
+<div class="modern-success-message" id="success-alert">
+    <button class="close-btn" id="close-alert-btn">×</button>
+    <div class="icon-wrapper">
+        <svg
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                class="success-icon"
+        >
+            <path d="M9 12l2 2 4-4"></path>
+            <circle r="10" cy="12" cx="12"></circle>
+        </svg>
+    </div>
+    <div class="text-wrapper">
+        <div class="title">Success</div>
+        <div class="message">Operation completed successfully</div>
+    </div>
+</div>
+
+<script>
+    const showAlertBtn = document.getElementById('show-alert-btn');
+    const successAlert = document.getElementById('success-alert');
+    const closeAlertBtn = document.getElementById('close-alert-btn');
+
+    showAlertBtn.addEventListener('click', () => {
+        successAlert.classList.add('visible');
+        setTimeout(() => {
+            successAlert.classList.remove('visible');
+        }, 5000);
+    });
+
+    closeAlertBtn.addEventListener('click', () => {
+        successAlert.classList.remove('visible');
+    });
+</script>
+</body>
+</html>
