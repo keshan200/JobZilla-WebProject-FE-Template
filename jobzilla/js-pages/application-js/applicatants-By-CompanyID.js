@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    const companyId = localStorage.getItem("loggedCompanyId");
+    const companyId = localStorage.getItem("loggedUseCid");
     const authToken = localStorage.getItem("authToken");
 
     console.log("Logged Company ID:", companyId);

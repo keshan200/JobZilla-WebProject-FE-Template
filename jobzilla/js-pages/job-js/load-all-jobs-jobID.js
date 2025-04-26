@@ -57,7 +57,7 @@ function loadJobs(jobs) {
 
                                                     <!--banner img-->
                                                     <div class="twm-media">
-                                                        <img  alt="#">
+                                                        <img  src="http://localhost:8080/uploads/${job.company.logo_img}"  alt="#">
                                                     </div>
 
 

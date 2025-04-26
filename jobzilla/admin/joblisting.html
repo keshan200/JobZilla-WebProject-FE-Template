@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobConnect - Admin Dashboard</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-light: rgba(79, 70, 229, 0.1);
+      --secondary: #6366f1;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --info: #06b6d4;
+      --light: #f9fafb;
+      --dark: #111827;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+
+      --border-radius: 16px;
+      --sidebar-width: 280px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fd;
+      color: var(--gray-700);
+      line-height: 1.6;
+    }
+
+    .dashboard-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: linear-gradient(170deg, #4f46e5 0%, #6366f1 100%);
+      color: white;
+      padding: 30px 0;
+      transition: all 0.3s;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.05);
+      z-index: 10;
+    }
+
+    .sidebar-header {
+      padding: 0 30px 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar-header h2 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background-color: white;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 18px;
+    }
+
+    .sidebar-nav {
+      margin-top: 30px;
+      padding: 0 15px;
+    }
+
+    .nav-section {
+      margin-bottom: 10px;
+      padding: 0 15px;
+    }
+
+    .nav-section-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .nav-item {
+      list-style: none;
+      margin-bottom: 5px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .nav-link.active {
+      background-color: white;
+      color: var(--primary);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-link i {
+      font-size: 18px;
+      width: 24px;
+      text-align: center;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 30px;
+      margin-left: var(--sidebar-width);
+      transition: all 0.3s;
+      overflow-y: auto;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+    }
+
+    .page-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gray-800);
+      letter-spacing: -0.5px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .search-bar {
+      position: relative;
+    }
+
+    .search-bar input {
+      padding: 12px 20px 12px 45px;
+      border: none;
+      background-color: white;
+      border-radius: 12px;
+      width: 300px;
+      font-size: 14px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+      position: relative;
+      padding: 8px 12px;
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+
+    .user-profile:hover {
+      background-color: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .user-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .user-name {
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+
+    .user-role {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+
+    .notifications {
+      position: relative;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .notifications i {
+      font-size: 22px;
+      color: var(--gray-500);
+    }
+
+    .notifications-badge {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      background-color: var(--danger);
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    /* Stats Cards */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 35px;
+    }
+
+    .stat-card {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      border-radius: var(--border-radius);
+      padding: 24px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+    }
+
+    .stat-card.jobs::before { background-color: var(--primary); }
+    .stat-card.candidates::before { background-color: var(--success); }
+    .stat-card.companies::before { background-color: var(--warning); }
+    .stat-card.revenue::before { background-color: var(--info); }
+
+    .stat-card-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: white;
+      margin-right: 24px;
+    }
+
+    .icon-jobs {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
+    }
+
+    .icon-candidates {
+      background: linear-gradient(45deg, var(--success), #34d399);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+    }
+
+    .icon-companies {
+      background: linear-gradient(45deg, var(--warning), #fbbf24);
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2);
+    }
+
+    .icon-revenue {
+      background: linear-gradient(45deg, var(--info), #22d3ee);
+      box-shadow: 0 8px 20px rgba(6, 182, 212, 0.2);
+    }
+
+    .stat-card-content {
+      flex: 1;
+    }
+
+    .stat-card-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 5px;
+      line-height: 1;
+    }
+
+    .stat-card-title {
+      color: var(--gray-500);
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .stat-card-change {
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+    }
+
+    .positive-change { color: var(--success); }
+    .negative-change { color: var(--danger); }
+
+    /* Charts */
+    .charts-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 35px;
+    }
+
+    @media (max-width: 1200px) {
+      .charts-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chart-card {
+      background-color: white;
+      border-radius: var(--border-radius);
+      padding: 24px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+
+    .chart-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+
+    .chart-actions select {
+      padding: 10px 16px;
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      font-size: 14px;
+      color: var(--gray-600);
+      background-color: white;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .chart-actions select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+
+    .chart-placeholder {
+      height: 300px;
+      background-color: var(--gray-100);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-400);
+      overflow: hidden;
+    }
+
+    /* Recent Activities */
+    .recent-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 1200px) {
+      .recent-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .recent-card {
+      background-color: white;
+      border-radius: var(--border-radius);
+      padding: 24px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .recent-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+
+    .recent-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+
+    .view-all {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .view-all:hover {
+      text-decoration: underline;
+    }
+
+    .activity-list {
+      list-style: none;
+    }
+
+    .activity-item {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+
+    .activity-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+    }
+
+    .activity-details {
+      flex: 1;
+    }
+
+    .activity-title {
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 3px;
+    }
+
+    .activity-time {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+
+    .activity-action {
+      font-size: 14px;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    /* Task List */
+    .tasks-list {
+      list-style: none;
+    }
+
+    .task-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .task-item:last-child {
+      border-bottom: none;
+    }
+
+    .task-checkbox {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 2px solid var(--gray-300);
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .task-checkbox:hover {
+      border-color: var(--primary);
+    }
+
+    .task-checkbox.checked {
+      background-color: var(--success);
+      border-color: var(--success);
+    }
+
+    .task-checkbox.checked:after {
+      content: '✓';
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 12px;
+    }
+
+    .task-label {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-700);
+      transition: all 0.3s;
+    }
+
+    .task-label.completed {
+      text-decoration: line-through;
+      color: var(--gray-400);
+    }
+
+    .task-date {
+      font-size: 12px;
+      color: var(--gray-500);
+      white-space: nowrap;
+      background-color: var(--gray-100);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .task-priority {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .priority-high { background-color: var(--danger); }
+    .priority-medium { background-color: var(--warning); }
+    .priority-low { background-color: var(--success); }
+
+    /* Media Queries */
+    @media (max-width: 992px) {
+      .sidebar {
+        width: 80px;
+        padding-top: 20px;
+      }
+
+      .sidebar-header {
+        padding: 0 20px 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .sidebar-header h2 span, .nav-section-title, .nav-link span {
+        display: none;
+      }
+
+      .logo-icon {
+        margin: 0;
+      }
+
+      .nav-link {
+        justify-content: center;
+        padding: 14px;
+      }
+
+      .main-content {
+        margin-left: 80px;
+        padding: 20px;
+      }
+
+      .search-bar input {
+        width: 200px;
+      }
+    }
+
+
+
+
+    .table-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .table-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .table-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+    .table-filter {
+      padding: 6px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #555;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th {
+      text-align: left;
+      padding: 12px 15px;
+      border-bottom: 1px solid #e0e0e0;
+      color: #555;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #333;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    tr:hover {
+      background-color: #f9fafd;
+    }
+    .status-badge {
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      display: inline-block;
+      text-align: center;
+    }
+    .status-active {
+      background-color: #e3f7ee;
+      color: #2ecc71;
+    }
+    .status-review {
+      background-color: #fff5e6;
+      color: #f39c12;
+    }
+    .status-interviews {
+      background-color: #eee6f5;
+      color: #9b59b6;
+    }
+    .status-closed {
+      background-color: #fee6e3;
+      color: #e74c3c;
+    }
+    .status-hold {
+      background-color: #f0f0f0;
+      color: #7f8c8d;
+    }
+    .department {
+      color: #666;
+      font-size: 13px;
+      font-weight: bold;
+    }
+    .date-cell {
+      color: #888;
+      font-size: 13px;
+      font-weight: bold;
+    }
+    .action-btn {
+      padding: 5px;
+      border-radius: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #5a67d8;
+      font-weight: bold;
+    }
+    .action-btn:hover {
+      background-color: #f0f2ff;
+    }
+
+
+    .action-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .action-menu {
+      position: absolute;
+      right: 0;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-radius: 6px;
+      padding: 8px 0;
+      z-index: 1000;
+      display: none;
+    }
+
+    .action-menu.show {
+      display: block;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .menu-item:hover {
+      background-color: #f5f7ff;
+    }
+
+    .menu-item .icon {
+      margin-right: 8px;
+      font-size: 16px;
+    }
+
+    .post-btn {
+      color: #3498db;
+    }
+
+    .activate-btn {
+      color: #2ecc71;
+    }
+
+    .deactivate-btn {
+      color: #f39c12;
+    }
+
+    .delete-btn {
+      color: #e74c3c;
+    }
+
+    @media (max-width: 768px) {
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .search-bar input {
+        width: 100%;
+      }
+
+      .stats-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .main-content {
+        padding: 15px;
+      }
+
+      .header-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .search-bar {
+        width: 100%;
+      }
+
+      .search-bar input {
+        width: 100%;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>
+        <div class="logo-icon">
+          <i class="fas fa-briefcase"></i>
+        </div>
+        <span>JobConnect</span>
+      </h2>
+    </div>
+
+    <div class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-section-title">Main</div>
+        <ul>
+          <li class="nav-item">
+            <a class="nav-link active">
+              <i class="fas fa-chart-line"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="fas fa-search"></i>
+              <span>Analytics</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">Management</div>
+        <ul>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="fas fa-list-alt"></i>
+              <span>Job Listings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="fas fa-users"></i>
+              <span>Candidates</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="fas fa-building"></i>
+              <span>Employers</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="fas fa-check-circle"></i>
+              <span>Applications</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="fas fa-comments"></i>
+              <span>Messages</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">Settings</div>
+        <ul>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="fas fa-user-shield"></i>
+              <span>Admin Users</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="fas fa-cog"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="page-header">
+      <h1>Dashboard</h1>
+      <div class="header-actions">
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search...">
+        </div>
+        <div class="notifications">
+          <i class="fas fa-bell"></i>
+          <div class="notifications-badge">3</div>
+        </div>
+        <div class="user-profile">
+          <div class="user-avatar">
+            <span>JD</span>
+          </div>
+          <div class="user-info">
+            <div class="user-name">John Doe</div>
+            <div class="user-role">Admin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="table-container">
+        <div class="table-header">
+          <div class="table-title">Job Listings</div>
+          <select class="table-filter">
+            <option>All Statuses</option>
+            <option>Active</option>
+            <option>Review</option>
+            <option>Interviews</option>
+            <option>Closed</option>
+          </select>
+        </div>
+
+        <table>
+          <thead>
+          <tr>
+            <th>Position Title</th>
+            <th>Department</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Applications</th>
+            <th>Posted Date</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Software Engineer</td>
+            <td class="department">Engineering</td>
+            <td>San Francisco, CA</td>
+            <td><span class="status-badge status-active">Active</span></td>
+            <td>24</td>
+            <td class="date-cell">Apr 15, 2025</td>
+            <td>
+              <button class="action-btn">•••</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Project Manager</td>
+            <td class="department">Operations</td>
+            <td>Chicago, IL</td>
+            <td><span class="status-badge status-interviews">Interviews</span></td>
+            <td>18</td>
+            <td class="date-cell">Apr 03, 2025</td>
+            <td>
+              <button class="action-btn">•••</button>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>UX Designer</td>
+            <td class="department">Product</td>
+            <td>New York, NY</td>
+            <td><span class="status-badge status-active">Active</span></td>
+            <td>32</td>
+            <td class="date-cell">Apr 18, 2025</td>
+            <td>
+              <div class="action-dropdown">
+                <button class="action-btn" onclick="toggleActionMenu(this)">•••</button>
+                <div class="action-menu">
+                  <button class="menu-item post-btn">
+                    <span class="icon">📝</span> Post Job
+                  </button>
+                  <button class="menu-item activate-btn">
+                    <span class="icon">✅</span> Activate
+                  </button>
+                  <button class="menu-item deactivate-btn">
+                    <span class="icon">⏸️</span> Deactivate
+                  </button>
+                  <button class="menu-item edit-btn">
+                    <span class="icon">✏️</span> Edit
+                  </button>
+                  <button class="menu-item delete-btn">
+                    <span class="icon">🗑️</span> Delete
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+   </div>
+
+  </div>
+
+
+<script>
+  function toggleActionMenu(button) {
+    const menu = button.nextElementSibling;
+    menu.classList.toggle('show');
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function closeMenu(e) {
+      if (!button.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.remove('show');
+        document.removeEventListener('click', closeMenu);
+      }
+    });
+  }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,19 +1,18 @@
 $(document).ready(function () {
     let currentPage = 1;
-    let totalPages = 5; // Replace this dynamically based on the total number of pages from the backend
+    let totalPages = 5;
 
-    // Load the first page when the page loads
+
     loadPage(currentPage);
 
-    // Function to load data for the given page
     function loadPage(page) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/company/getAll", // Replace with your API URL
+            url: "http://localhost:8080/api/v1/company/getAll",
             method: "GET",
-            data: { page: page - 1, size: 10 }, // Assuming each page has 10 items
+            data: { page: page - 1, size: 10 },
             success: function (response) {
                 loadCompanies(response.content);
-                totalPages = response.totalPages; // Set the total number of pages dynamically
+                totalPages = response.totalPages;
                 updatePagination(page);
             },
             error: function (error) {
@@ -22,7 +21,7 @@ $(document).ready(function () {
         });
     }
 
-    // Function to render company data on the page
+
     function loadCompanies(companies) {
         let container = $(".companies-container");
         container.empty();
@@ -54,7 +53,7 @@ $(document).ready(function () {
         });
     }
 
-    // Function to update the pagination UI
+
     function updatePagination(page) {
         $(".page-num").removeClass("active");
         $(`.page-num[data-page=${page}]`).addClass("active");
@@ -72,14 +71,14 @@ $(document).ready(function () {
         }
     }
 
-    // Click handler for page numbers
+
     $(".page-num").click(function () {
         let page = $(this).data("page");
         currentPage = page;
         loadPage(page);
     });
 
-    // Click handler for "previous" button
+
     $("#prevPage").click(function () {
         if (currentPage > 1) {
             currentPage--;
@@ -87,7 +86,7 @@ $(document).ready(function () {
         }
     });
 
-    // Click handler for "next" button
+
     $("#nextPage").click(function () {
         if (currentPage < totalPages) {
             currentPage++;

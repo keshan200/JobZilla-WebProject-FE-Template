@@ -23,6 +23,7 @@ $(document).ready(function () {
                 console.log("Candidate ID saved:", candidateId);
 
 
+
             }
 
             },
@@ -100,8 +101,8 @@ $(".sendApplication").click(()=>{
                 alert("make sure your profile complete")
             }
 
-            console.log("Application submitted:", res);
-            alert("Application submitted successfully!");
+            alert("✅ Successfully Submitted!");
+            console.log("Success:", data);
 
         },
 

@@ -99,12 +99,13 @@ function loadCandidates(candidates) {
                                             <div class="twm-candi-self-bottom">
                                                 <a href="javascript:;" class="site-button outline-white">Hire Me Now</a>
                                                 
-                                                <div class="message-icon-container">
-                                                     <svg class="message-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                       <path class="message-bubble" d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H6L4 18V4H20V16Z"/>
-                                                      </svg>
-                                                  <span class="message-text">Message</span>
-                                                     </div>
+                                              <a href="candidate-chat.html" class="message-icon-container">
+                                              <svg class="message-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                               <path class="message-bubble" d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H6L4 18V4H20V16Z"/>
+                                                 </svg>
+                                              <span class="message-text">Message</span>
+                                                    </a>
+
                                                      
                                                      
                                                      

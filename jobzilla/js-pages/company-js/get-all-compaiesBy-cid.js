@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     const companyId = localStorage.getItem("cid");
-    console.log("hutti",companyId)
+    console.log("cid",companyId)
 
    $.ajax({
        url:`http://localhost:8080/api/v1/company/all/${companyId}`,

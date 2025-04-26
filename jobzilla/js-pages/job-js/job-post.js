@@ -1,6 +1,4 @@
 
-
-
 $(document).ready(function () {
     $('#jobdetails-btn').click(function (e) {
         e.preventDefault();
@@ -10,8 +8,6 @@ $(document).ready(function () {
 
 
         let companyCID = null;
-
-
         if (loggedUserCID !== null && loggedUserCID !== undefined) {
             companyCID = loggedUserCID;
         } else {
@@ -20,11 +16,8 @@ $(document).ready(function () {
 
         console.log("assign una cid",companyCID)
 
-
-
         const formData = {
             jobTitle: $('#jobTitl').val(),
-            jobCategory: $('#j-category').val(),
             jobType: $('#s-category').val(),
             offeredSalary: $('#salary').val(),
             experience: $('#experience').val(),
@@ -41,6 +34,9 @@ $(document).ready(function () {
             endDate: $('#edate').val(),
             requirements: requirementsArray,
             responsibilities: responsibilitiesArray,
+            jobCategory:{
+                jobCatId:$('#j-category').val(),
+            },
             company: {
                 cid: companyCID
             }
@@ -49,7 +45,8 @@ $(document).ready(function () {
         console.log("values",formData);
 
 
-        if (!formData.jobTitle || !formData.jobCategory || !formData.jobType || !formData.email) {
+
+        if (!formData.jobTitle|| !formData.jobType || !formData.email) {
             alert('Please fill in all required fields.');
             return;
         }

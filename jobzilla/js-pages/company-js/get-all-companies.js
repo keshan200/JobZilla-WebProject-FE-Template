@@ -36,7 +36,7 @@ function loadCompanies(companies) {
                                                      <h4>${company.company_name}</h4>
                                                  </a>
                                                  <p class="twm-job-address">${company.full_address}</p>
-                                                 <a href="employer-detail.html" class="twm-job-websites site-text-primary">${Accountancy}</a>
+                                                 <a href="employer-detail.html" class="twm-job-websites site-text-primary">${company.company_type}</a>
                                              </div>
                                              <div class="twm-right-content">
                                                  <div class="twm-jobs-vacancies"><span>available</span>Vacancies</div>

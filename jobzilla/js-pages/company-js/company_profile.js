@@ -18,6 +18,8 @@ $("#detailsSaveBtn").click(function (event) {
         country: $("#country").val(),
         city: $("#city").val(),
         full_address: $("#fulladrs").val(),
+        company_type:$("#companyType").val(),
+
 
         user:{ uid:loggedInUserId}
     };
